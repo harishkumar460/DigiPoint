@@ -1,0 +1,60 @@
+<div id="myModal" class="modal" style="display: block;background-image:url('./assets/login_wall/login_wall1.jpg')">
+	<div class="modal-dialog modal-login" style="margin-top:10%;">
+		<div class="modal-content">
+			<div id="login-form" *ngIf="showLoginForm; else registerForm">
+			<form action="" method="post">
+				<div class="modal-header">				
+					<h4 class="modal-title">Digi Point>>>> Login</h4>
+					<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+				</div>
+				<div class="modal-body">				
+					<div class="form-group">
+						<label>Username</label>
+						<input type="text" class="form-control" required="required">
+					</div>
+					<div class="form-group">
+						<div class="clearfix">
+							<label>Password</label>
+							<a href="#" (click)="showLoginForm=false" class="pull-right text-muted" style="margin-left:10px;"><small>New User/Register</small></a>
+							<a href="#" class="pull-right text-muted"><small>Forgot?</small></a>
+						</div>
+						
+						<input type="password" class="form-control" required="required">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<label class="checkbox-inline pull-left"><input type="checkbox"> Remember me</label>
+					<input type="submit" class="btn btn-primary pull-right" value="Login">
+				</div>
+			</form>
+		</div>
+		<ng-template #registerForm>
+		<div class="register-form">
+			<form action="" method="post">
+				<div class="modal-header">				
+					<h4 class="modal-title">Digi Point>>>> Register</h4>
+					<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+				</div>
+				<div class="modal-body">				
+					<div class="form-group">
+						<input type="text" placeholder="Enter user name" class="form-control" required="required">
+					</div>
+					<div class="form-group">
+					    <input type="password" class="form-control" placeholder="New password" required="required">
+					</div>
+					<div class="form-group">
+					    <input type="password" placeholder="Confirm new password" class="form-control" required="required">
+					</div>
+					<div class="form-group">
+					    <input type="password" placeholder="Shop authcode" class="form-control" required="required">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-primary pull-right" value="Register">
+				</div>
+			</form>
+		</div>
+	</ng-template>
+		</div>
+	</div>
+</div>
