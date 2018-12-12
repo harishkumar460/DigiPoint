@@ -8,15 +8,26 @@ import { Http } from '@angular/http';
 export class LoginComponent{
 
   showLoginForm =true;
-  http : Http;
-  constructor() {
+  constructor(private http : Http) {
 
    }
 
   processLogin(userLoginInfo){
    console.log('user name '+userLoginInfo.userName+' password '+userLoginInfo.userPassword);
   this.http.get('https://shiv-app.herokuapp.com/authorized-users').
-   subscribe((data) => console.log(data))
+   subscribe(function(response){
+    response=JSON.parse(response['_body']);
+    console.log(JSON.stringify(response));
+     checkLoggedInUser(response,userLoginInfo);
+   })
+  }
+
+  function checkLoggedInUser(usersList : any,userLoginInfo: any){
+   
+   let matchUser=usersList.users.filter(function(user){
+     return userLoginInfo.userName===user.user_name && userLoginInfo.userPassword===user.password;
+   });
+    console.log(matchUser);
   }
 
   registerNewUser(newUserInfo){
