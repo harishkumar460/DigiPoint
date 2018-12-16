@@ -2,10 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import { NgModule }  from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { RouterModule,Routes }  from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+
+const appRouteList: Routes=[
+{path:'home-page',component:HomeComponent}
+];
 
 @NgModule({
   declarations: [
@@ -16,7 +21,8 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(appRouteList,{enableTracing:true})
   ],
   providers: [],
   bootstrap: [LoginComponent]
