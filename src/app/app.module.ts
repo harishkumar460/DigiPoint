@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 const appRouteList: Routes=[
+{path:'login-page',component:LoginComponent},
 {path:'home-page',component:HomeComponent}
 ];
 
@@ -22,9 +23,9 @@ const appRouteList: Routes=[
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRouteList,{enableTracing:true})
+    RouterModule.forRoot(appRouteList,{enableTracing:false})
   ],
   providers: [],
-  bootstrap: [LoginComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

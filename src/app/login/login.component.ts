@@ -1,7 +1,6 @@
 import { Component} from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-import { NgZone } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +9,7 @@ import { NgZone } from '@angular/core';
 export class LoginComponent{
 
   showLoginForm =true;
-  constructor(private http : Http,private router:Router,private _ngZone: NgZone) {
+  constructor(private http : Http,private router:Router) {
 
    }
 
@@ -31,11 +30,8 @@ export class LoginComponent{
    });
     console.log(matchUser);
     if(matchUser.length){
-      this._ngZone.run(() => {
       this.router.navigate(['home-page']).then(nav=>console.log('navigation '+nav));
-    });
-     //this.router.navigateByUrl('/home-page').then(nav=>console.log('navigation '+nav));
-    }
+     }
   }
 
   registerNewUser(newUserInfo){

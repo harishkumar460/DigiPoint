@@ -5,7 +5,7 @@
 			<form #userlogin="ngForm" (ngSubmit)="processLogin(userlogin.value)" method="post">
 				<div class="modal-header">				
 					<h4 class="modal-title">Digi Point>>>> Login</h4>
-					<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+					
 				</div>
 				<div class="modal-body">				
 					<div class="form-group">
@@ -33,7 +33,7 @@
 			<form #userRegisteration="ngForm" (ngSubmit)="registerNewUser(userRegisteration.value)" method="post">
 				<div class="modal-header">				
 					<h4 class="modal-title">Digi Point>>>> Register</h4>
-					<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+					
 				</div>
 				<div class="modal-body">				
 					<div class="form-group">
@@ -50,6 +50,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
+					<input (click)="showLoginForm=true;" type="button" class="btn btn-primary pull-right" value="Back to Login">
 					<input type="submit" class="btn btn-primary pull-right" value="Register">
 				</div>
 			</form>
