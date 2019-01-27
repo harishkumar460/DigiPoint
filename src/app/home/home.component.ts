@@ -17,8 +17,7 @@ export class HomeComponent implements OnInit {
    subscribe(response=>{
     response=JSON.parse(response['_body']);
     console.log(JSON.stringify(response));
-    this.productList=response['cellPhonesList'];
-    
+    this.productList=response['cellPhonesList']; 
    });
    
   }
