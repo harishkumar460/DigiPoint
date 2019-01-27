@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
+import { ApiService } from './services/api.service';
+
 const appRouteList: Routes=[
 {path:'login-page',component:LoginComponent},
 {path:'home-page',component:HomeComponent}
@@ -25,7 +27,7 @@ const appRouteList: Routes=[
     HttpModule,
     RouterModule.forRoot(appRouteList,{enableTracing:false})
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
