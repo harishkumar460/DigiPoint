@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
@@ -7,9 +7,10 @@ import { ApiService } from '../services/api.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit {
 
   showLoginForm =true;
+  contentData={};
   constructor(private router:Router,private apiService: ApiService) {
 
    }
@@ -35,8 +36,22 @@ export class LoginComponent{
      }
   }
 
+  getContentData(){
+     this.apiService.getApi('https://shiv-app.herokuapp.com/login-page-content').
+     subscribe(response=>{
+      response=JSON.parse(response['_body']);
+      console.log(JSON.stringify(response));
+      this.contentData=response; 
+     });
+   };
+
+
   registerNewUser(newUserInfo){
    console.log('user name '+newUserInfo.userName+' new password '+newUserInfo.newPassword+' confirm ps '+newUserInfo.confirmPassword+' shop code '+newUserInfo.shopAuthcode);
+  }
+
+  ngOnInit() {
+   this.getContentData();
   }
 
 }

@@ -21,7 +21,7 @@
         <div class="col-lg-3">
           <h1 class="my-4">{{contentData.vendorName}}</h1>
           <div class="list-group">
-            <a href="void:javascript()" [id]="productCategory.id" *ngFor="let productCategory of contentData.productCategories" class="list-group-item" [ngClass]="{'category-selected':productCategory.isActive}">{{productCategory.text}}</a>
+            <a  [id]="productCategory.id" *ngFor="let productCategory of contentData.productCategories" class="list-group-item" [ngClass]="{'category-selected':productCategory.isActive}">{{productCategory.text}}</a>
           </div>
         </div>
         <!-- /.col-lg-3 -->
