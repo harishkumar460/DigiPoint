@@ -17,7 +17,8 @@
 
     <!-- Page Content -->
     <div class="container">
-      <div class="row">
+      <router-outlet name="aux"></router-outlet>
+      <div class="row" *ngIf="showMainContent">
         <div class="col-lg-3">
           <h1 class="my-4">{{contentData.vendorName}}</h1>
           <div class="list-group">
@@ -51,11 +52,11 @@
           <h2 class="my-4">{{brand.brandName}}</h2>
           <div class="row">
             <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of brand.models">
-              <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="{{product.imageUrl}}" alt=""></a>
+              <div class="card h-100" (click)="navigateToProductDetails()">
+                <a ><img class="card-img-top" src="{{product.imageUrl}}" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">{{product.name}}</a>
+                    <a >{{product.name}}</a>
                   </h4>
                   <h5>{{product.price}}</h5>
                   <p class="card-text">{{product.description}}</p>

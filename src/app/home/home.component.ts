@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,8 @@ import { ApiService } from '../services/api.service';
 export class HomeComponent implements OnInit {
   productList :[];
   contentData:{};
-  constructor(private apiService: ApiService) {
+  showMainContent=true;
+  constructor(private router:Router, private apiService: ApiService) {
     
    }
 
@@ -29,6 +31,11 @@ export class HomeComponent implements OnInit {
       this.contentData=response; 
      });
    };
+
+   navigateToProductDetails(){
+     this.showMainContent=false;
+     this.router.navigate(['product-details-page']).then(nav=>console.log('navigation '+nav));
+   }
 
   ngOnInit() {
    this.getContentData();

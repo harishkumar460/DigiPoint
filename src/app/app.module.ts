@@ -9,17 +9,20 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { ApiService } from './services/api.service';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 const appRouteList: Routes=[
 {path:'login-page',component:LoginComponent},
-{path:'home-page',component:HomeComponent}
+{path:'home-page',component:HomeComponent},
+{path:'product-details-page',component:ProductDetailsComponent, outlet: 'aux' }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

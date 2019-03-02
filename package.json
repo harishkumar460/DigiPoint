@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "serve": "ng serve --open",
-    "expose":"ng serve --host=192.168.43.16",
+    "expose":"ng serve --host=192.168.43.120",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
