@@ -14,7 +14,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 const appRouteList: Routes=[
 {path:'login-page',component:LoginComponent},
 {path:'home-page',component:HomeComponent},
-{path:'product-details-page',component:ProductDetailsComponent, outlet: 'aux' }
+{path:'product-details-page',component:ProductDetailsComponent}
 ];
 
 @NgModule({

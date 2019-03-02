@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   productList :[];
   contentData:{};
-  showMainContent=true;
   constructor(private router:Router, private apiService: ApiService) {
     
    }
@@ -33,7 +32,6 @@ export class HomeComponent implements OnInit {
    };
 
    navigateToProductDetails(){
-     this.showMainContent=false;
      this.router.navigate(['product-details-page']).then(nav=>console.log('navigation '+nav));
    }
 
