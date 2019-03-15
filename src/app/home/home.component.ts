@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   productList :[];
   contentData:{};
+  selectedProductInfo:{id:'test',name:'tester'};
   constructor(private router:Router, private apiService: ApiService) {
     
    }
