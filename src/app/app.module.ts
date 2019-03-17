@@ -3,6 +3,7 @@ import {FormsModule} from '@angular/forms';
 import { NgModule }  from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule,Routes }  from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -28,6 +29,7 @@ const appRouteList: Routes=[
     BrowserModule,
     FormsModule,
     HttpModule,
+    NgbModule,
     RouterModule.forRoot(appRouteList,{enableTracing:false})
   ],
   providers: [ApiService],

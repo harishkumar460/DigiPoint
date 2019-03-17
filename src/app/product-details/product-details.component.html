@@ -1,6 +1,6 @@
    <!-- modal-->
-     <div class="modal fade product_view" id="product_view">
-    <div class="modal-dialog">
+     <!-- <div class="modal fade product_view" id="product_view"> -->
+     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                <h3 class="modal-title">{{productInfo.name}}</h3>
@@ -20,42 +20,48 @@
                         <ul>
                          <li *ngFor="let description of productInfo.detailedDescription">{{description}}</li>   
                         </ul>
-                        <h3 class="cost"><span class="fa fa-dollar"></span>{{productInfo.price}}<small *ngIf="productInfo.preCost" class="pre-cost"><span class="fa fa-dollar"></span> {{productInfo.preCost}}</small></h3>
+                        <h3 class="cost">{{productInfo.price}}<small *ngIf="productInfo.preCost" class="pre-cost m-l-t">{{productInfo.preCost}}</small></h3>
+                        <form #productInfoForm = "ngForm">
                         <div class="row">
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                                <select class="form-control" name="select">
+                                <select class="form-control" name="colorOptions" ngModel>
+                                    <option value="" selected="">Color</option>
                                     <option *ngFor="let color of productInfo.colors" [value]="color">{{color}}</option>
                                     
                                 </select>
                             </div>
                             <!-- end col -->
                             <div class="col-md-4 col-sm-6 col-xs-12">
-                                <select class="form-control" name="select">
+                                <select class="form-control" name="storageOptions" ngModel>
+                                    <option value="" selected="">Capacity</option>
                                     <option *ngFor="let storage of productInfo.capacity" [value]="storage">{{storage}}</option>
                                 </select>
                             </div>
                             <!-- end col -->
                             <div class="col-md-4 col-sm-12">
-                                <select class="form-control" name="select">
-                                    <option value="" selected="">QTY</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
+                                <select class="form-control" name="qtyOptions" ngModel>
+                                    <option value="" selected="">Qty</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
                                 </select>
                             </div>
-                            <!-- end col -->
+                        <!-- end col -->
                         </div>
+                        
                         <div class="space-ten"></div>
+                        <p class="errorAlert m-b-5" *ngIf="showProductInfoFormError">Please select all specifications !</p>
                         <div class="btn-ground">
-                            <button type="button" class="btn btn-primary"><span class="fa fa-shopping-cart"></span> Add To Cart</button>
+                            <button type="button" [disabled]="!productInfoForm.dirty && productInfoForm.valid" (click)="addProductToCart(productInfoForm)" class="btn btn-primary"><span class="fa fa-shopping-cart"></span> Add To Cart</button>
                             <button type="button" class="btn btn-primary m-l-t"><span class="fa fa-heart"></span> Add To Wishlist</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
+       </div>
     </div>
-</div>
+<!-- </div> -->
     <!-- modal end-->
     
     

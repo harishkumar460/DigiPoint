@@ -28,9 +28,15 @@ height:90%;
 .m-l-t{
 margin-left: 10px;	
 }
+.m-b-5{
+	margin-bottom: 5px;
+}
 .form-control {
 	font-size: 14px;
 }
 .card:hover{
  cursor: pointer;	
+}
+.errorAlert{
+color:red;	
 }
