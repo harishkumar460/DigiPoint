@@ -4,14 +4,14 @@
         <div class="modal-content">
             <div class="modal-header">
                <h3 class="modal-title">{{productInfo.name}}</h3>
-               <a href="#" data-dismiss="modal" class="class pull-right"><span class="fa fa-close"></span></a>
+               <a  href="javascript:void()" (click)="showProductInfoFormError=false;modal.dismiss();" class="class pull-right"><span class="fa fa-close"></span></a>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-6 product_img">
+                    <div class="col-md-5 product_img">
                         <img [src]="productInfo.imageUrl" class="img-responsive">
                     </div>
-                    <div class="col-md-6 product_content">
+                    <div class="col-md-7 product_content">
                         <h4>Product Id: <span>{{productInfo.productId}}</span></h4>
                         <div class="rating">
                             <span class="fa fa-star" [ngClass]="i<=productInfo.ratings?'fa-star':'fa-star-o'" *ngFor="let i of [1,2,3,4,5]; let i = index;"></span>

@@ -11,10 +11,15 @@ import { HomeComponent } from './home/home.component';
 
 import { ApiService } from './services/api.service';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { LandingComponent } from './landing/landing.component';
 
 const appRouteList: Routes=[
 {path:'login-page',component:LoginComponent},
-{path:'home-page',component:HomeComponent},
+{path:'home-page',component:HomeComponent,
+ children: [
+      { path:'landing', component:LandingComponent}
+    ] 
+},
 {path:'product-details-page',component:ProductDetailsComponent}
 ];
 
@@ -23,7 +28,8 @@ const appRouteList: Routes=[
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

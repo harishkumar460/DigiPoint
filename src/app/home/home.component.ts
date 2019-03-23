@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -13,7 +13,8 @@ export class HomeComponent implements OnInit {
   contentData:{};
   selectedProductInfo:{id:'test',name:'tester'};
   closeResult : string;
-  constructor(private router:Router, private apiService: ApiService,private modalService: NgbModal) {
+  constructor(private router:Router, private apiService: ApiService,
+            private modalService: NgbModal,private activatedRoute : ActivatedRoute) {
     
    }
 
@@ -35,15 +36,16 @@ export class HomeComponent implements OnInit {
    };
 
    navigateToProductDetails(){
-     this.router.navigate(['product-details-page']).then(nav=>console.log('navigation '+nav));
+     this.router.navigate(['landing'],{ relativeTo: this.activatedRoute }).then(nav=>console.log('navigation '+nav));
    }
 
    public open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+     this.navigateToProductDetails();
+   /* this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',backdrop:'static'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    });*/
   }
 
   public getDismissReason(reason: any): string {

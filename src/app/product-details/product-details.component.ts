@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProductDetailsComponent implements OnInit {
 
   @Input() productInfo;
+  @Input() modal;
   showProductInfoFormError : boolean =false;
   constructor() { }
 
@@ -27,9 +28,6 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
   	console.log('product details '+JSON.stringify(this.productInfo));
   }
-  ngDoCheck(){
-  	console.log('do check called');
-  	this.showProductInfoFormError=false;
-  }
+  
 
 }
