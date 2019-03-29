@@ -1,0 +1,9 @@
+.category-selected{
+	background-color: #ffe4c4;
+}
+.list-group a:hover{
+	background-color: #ffe4c4;
+}
+.list-group a:focus{
+	background-color: #ffe4c4;
+}

@@ -17,70 +17,7 @@
 
     <!-- Page Content -->
      <router-outlet></router-outlet>
-    <div class="container">
-       <div class="row">
-        <div class="col-lg-3">
-          <h1 class="my-4">{{contentData.vendorName}}</h1>
-          <div class="list-group">
-            <a  [id]="productCategory.id" *ngFor="let productCategory of contentData.productCategories" class="list-group-item" [ngClass]="{'category-selected':productCategory.isActive}">{{productCategory.text}}</a>
-          </div>
-        </div>
-        <!-- /.col-lg-3 -->
-
-        <div class="col-lg-9">
-
-          <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" *ngFor="let slideCount of contentData.carousel" 
-              data-slide-to="index"  [ngClass]="{'active':slideCount.isActive}"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-              <div class="carousel-item" [ngClass]="{'active':slide.isActive}" *ngFor="let slide of contentData.carousel">
-                <img class="d-block img-fluid" [src]="slide.imageUrl" [alt]="slide.name">
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">{{contentData.previous}}</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">{{contentData.next}}</span>
-            </a>
-          </div>
-          <div *ngFor="let brand of productList;">
-          <h2 class="my-4">{{brand.brandName}}</h2>
-          <div class="row">
-            <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of brand.models">
-            <div (click)="open(productview);selectedProductInfo=product" class="card h-100" >
-                <a  ><img class="card-img-top" src="{{product.imageUrl}}" alt=""></a>
-                <div class="card-body">
-                  <h4 class="card-title">
-                    <a >{{product.name}}</a>
-                  </h4>
-                  <h5>{{product.price}}</h5>
-                  <p class="card-text">{{product.description}}</p>
-                </div>
-                <div class="card-footer">
-                  <div class="rating">
-                            <span class="fa fa-star" [ngClass]="i<=product.ratings?'fa-star':'fa-star-o'" *ngFor="let i of [1,2,3,4,5]; let i = index;"></span>
-                            ({{product.reviews}} reviews)
-                        </div>
-                </div>
-              </div>
-            </div>
-          <!-- /.row -->
-        </div>
-      </div>
-        <!-- /.col-lg-9 -->
-      </div>
-      <!-- /.row -->
-      </div>
-    </div>
-    <!-- /.container -->
-    <ng-template #productview let-modalInstance>
-    <product-details [productInfo]="selectedProductInfo" [modal]="modalInstance"></product-details>
-   </ng-template>
+    
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">

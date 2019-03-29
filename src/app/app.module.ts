@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { ApiService } from './services/api.service';
+import { StorageService } from './services/storage.service';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { LandingComponent } from './landing/landing.component';
 
@@ -38,7 +39,7 @@ const appRouteList: Routes=[
     NgbModule,
     RouterModule.forRoot(appRouteList,{enableTracing:false})
   ],
-  providers: [ApiService],
+  providers: [ApiService,StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

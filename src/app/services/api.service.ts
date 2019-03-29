@@ -10,4 +10,10 @@ export class ApiService {
   getApi(endPoint: string){
     return this.http.get(endPoint);
   }
+
+  postCartDetails(cartDetails){
+   
+  }
+
+
 }

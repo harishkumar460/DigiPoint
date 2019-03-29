@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { StorageService } from '../services/storage.service';
 import { Router, ActivatedRoute} from '@angular/router';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -9,59 +9,36 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  productList :[];
   contentData:{};
-  selectedProductInfo:{id:'test',name:'tester'};
-  closeResult : string;
   constructor(private router:Router, private apiService: ApiService,
-            private modalService: NgbModal,private activatedRoute : ActivatedRoute) {
+            private activatedRoute : ActivatedRoute,private storageService : StorageService) {
     
    }
 
-   getProductList(){
-     this.apiService.getApi('https://shiv-app.herokuapp.com/cellphones-list').
-     subscribe(response=>{
-      response=JSON.parse(response['_body']);
-      console.log(JSON.stringify(response));
-      this.productList=response['cellPhonesList']; 
-     });
-   };
-   getContentData(){
+  getContentData(){
+     if(this.storageService.getHomeContent()){
+       this.contentData=this.storageService.getHomeContent();
+       this.navigateToLanding();
+       return;
+     }
      this.apiService.getApi('https://shiv-app.herokuapp.com/home-page-content').
      subscribe(response=>{
       response=JSON.parse(response['_body']);
       console.log(JSON.stringify(response));
       this.contentData=response; 
+      this.storageService.setHomeContent(response);
+      this.navigateToLanding();
      });
    };
 
-   navigateToProductDetails(){
+   navigateToLanding(){
      this.router.navigate(['landing'],{ relativeTo: this.activatedRoute }).then(nav=>console.log('navigation '+nav));
    }
 
-   public open(content) {
-     this.navigateToProductDetails();
-   /* this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',backdrop:'static'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });*/
-  }
-
-  public getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
-  }
-
+   
 
   ngOnInit() {
    this.getContentData();
-   this.getProductList();
   }
 
 }
