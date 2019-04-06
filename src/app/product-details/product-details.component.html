@@ -56,7 +56,7 @@
                         <p class="successAlert m-b-10" *ngIf="showProductInfoFormSuccess"><span class="fa fa-check"></span><span class="m-l-t">Item added to Cart</span></p>
                         <div class="btn-ground">
                             <button type="button" [disabled]="!productInfoForm.dirty && productInfoForm.valid" (click)="addProductToCart(productInfoForm)" class="btn btn-primary"><span class="fa fa-shopping-cart"></span> Add To Cart</button>
-                            <button type="button" routerLink="/cart-page" class="btn btn-primary m-l-t"> Add & Proceed</button>
+                            <button type="button" (click)="navigateToCart()" class="btn btn-primary m-l-t"> Add & Proceed</button>
                         </div>
                         </form>
                     </div>

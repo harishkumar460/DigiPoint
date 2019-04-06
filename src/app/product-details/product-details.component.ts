@@ -43,7 +43,8 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   navigateToCart(){
-     this.router.navigate(['cart-page'],{ relativeTo: this.activatedRoute }).then(nav=>console.log('navigation '+nav));
+    this.modal.dismiss();
+     this.router.navigate(['cart-page'],{ relativeTo: this.activatedRoute.parent }).then(nav=>console.log('navigation '+nav));
    }
 
   ngOnInit() {
