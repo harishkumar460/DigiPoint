@@ -13,12 +13,14 @@ import { ApiService } from './services/api.service';
 import { StorageService } from './services/storage.service';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { LandingComponent } from './landing/landing.component';
+import { CartLandingComponent } from './cart-landing/cart-landing.component';
 
 const appRouteList: Routes=[
 {path:'login-page',component:LoginComponent},
 {path:'home-page',component:HomeComponent,
  children: [
-      { path:'landing', component:LandingComponent}
+      { path:'landing', component:LandingComponent},
+      { path:'cart-page', component:CartLandingComponent}
     ] 
 },
 {path:'product-details-page',component:ProductDetailsComponent}
@@ -30,7 +32,8 @@ const appRouteList: Routes=[
     LoginComponent,
     HomeComponent,
     ProductDetailsComponent,
-    LandingComponent
+    LandingComponent,
+    CartLandingComponent
   ],
   imports: [
     BrowserModule,

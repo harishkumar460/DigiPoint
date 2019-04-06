@@ -31,6 +31,9 @@ margin-left: 10px;
 .m-b-5{
 	margin-bottom: 5px;
 }
+.m-b-10{
+  margin-bottom: 10px;
+}
 .form-control {
 	font-size: 14px;
 }
@@ -39,4 +42,7 @@ margin-left: 10px;
 }
 .errorAlert{
 color:red;	
+}
+.successAlert{
+color:green;  
 }

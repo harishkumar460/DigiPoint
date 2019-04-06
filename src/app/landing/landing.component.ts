@@ -4,7 +4,7 @@ import { ApiService } from '../services/api.service';
 import { StorageService } from '../services/storage.service';
 import { Router, ActivatedRoute} from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-
+import { SharedService } from '../services/shared.service';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -16,10 +16,9 @@ export class LandingComponent implements OnInit {
    contentData:{};
    selectedProductInfo:{id:'test',name:'tester'};
    closeResult : string;
-
   constructor(private router:Router, private apiService: ApiService,
             private modalService: NgbModal,private activatedRoute : ActivatedRoute,
-            private storageService: StorageService) {
+            private storageService: StorageService,private sharedService: SharedService) {
 
              }
 

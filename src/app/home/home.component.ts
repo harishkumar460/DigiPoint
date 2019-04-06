@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { StorageService } from '../services/storage.service';
+import { SharedService } from '../services/shared.service';
 import { Router, ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -10,9 +11,14 @@ import { Router, ActivatedRoute} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   contentData:{};
+  itemsInCart:Number=0;
   constructor(private router:Router, private apiService: ApiService,
-            private activatedRoute : ActivatedRoute,private storageService : StorageService) {
-    
+            private activatedRoute : ActivatedRoute,private storageService : StorageService,
+            private sharedService : SharedService) {
+      this.sharedService.cartCounter.asObservable().subscribe((value: any) => {
+        console.log('cart item listner '+value);
+        this.itemsInCart=value;
+    });
    }
 
   getContentData(){

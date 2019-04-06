@@ -50,10 +50,13 @@
                         </div>
                         
                         <div class="space-ten"></div>
-                        <p class="errorAlert m-b-5" *ngIf="showProductInfoFormError">Please select all specifications !</p>
+                        <p class="errorAlert m-b-10" *ngIf="showProductInfoFormError">
+                            <span class="fa fa-exclamation-circle"></span>
+                            <span class="m-l-t">Please select all specifications !</span></p>
+                        <p class="successAlert m-b-10" *ngIf="showProductInfoFormSuccess"><span class="fa fa-check"></span><span class="m-l-t">Item added to Cart</span></p>
                         <div class="btn-ground">
                             <button type="button" [disabled]="!productInfoForm.dirty && productInfoForm.valid" (click)="addProductToCart(productInfoForm)" class="btn btn-primary"><span class="fa fa-shopping-cart"></span> Add To Cart</button>
-                            <button type="button" class="btn btn-primary m-l-t"><span class="fa fa-heart"></span> Add To Wishlist</button>
+                            <button type="button" routerLink="/cart-page" class="btn btn-primary m-l-t"> Add & Proceed</button>
                         </div>
                         </form>
                     </div>
