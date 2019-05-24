@@ -42,9 +42,13 @@ export class ProductDetailsComponent implements OnInit {
   	}
   }
 
-  navigateToCart(){
-    this.modal.dismiss();
-     this.router.navigate(['cart-page'],{ relativeTo: this.activatedRoute.parent }).then(nav=>console.log('navigation '+nav));
+  navigateToCart(productInfoForm : any){
+    this.addProductToCart(productInfoForm);
+    if(!this.showProductInfoFormError){
+      this.modal.dismiss();
+      this.router.navigate(['cart-page'],{ relativeTo: this.activatedRoute.parent }).then(nav=>console.log('navigation '+nav));
+    }
+     
    }
 
   ngOnInit() {
