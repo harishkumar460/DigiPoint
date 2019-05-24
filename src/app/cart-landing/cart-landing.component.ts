@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CartService } from '../services/cart.service';
 @Component({
   selector: 'app-cart-landing',
   templateUrl: './cart-landing.component.html',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartLandingComponent implements OnInit {
 
-  constructor() { }
+  private cartDetails: any;
+
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
+  	this.cartDetails=this.cartService.getCart();
+  }
+  public clearCart(){
+  	this.cartDetails=null;
+  	this.cartService.clearCart();
   }
 
 }

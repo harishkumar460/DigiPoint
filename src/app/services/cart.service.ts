@@ -36,4 +36,8 @@ export class CartService {
   	this.cartObject=cartObj;
   	this.sharedService.cartCounter.next(this.cartObject.items.length);
   }
+  clearCart(){
+    this.cartObject=null;
+    this.sharedService.cartCounter.next(0);
+  }
 }

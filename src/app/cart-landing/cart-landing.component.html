@@ -1,3 +1,35 @@
-<p>
-  cart-landing works!
-</p>
+<div class="container">
+       <div class="row">
+        <div class="col-lg-6">
+          <h1 class="my-4" *ngIf="cartDetails && cartDetails.items.length; else emptyCart">Itmes in your cart:</h1>
+          <ng-template #emptyCart>
+          <h1 class="my-4">Your cart is empty</h1>
+        </ng-template>
+         </div>
+        </div>
+        <div id="item-list" *ngIf="cartDetails">
+        <div class="row" *ngFor="let item of cartDetails.items">
+        <div class="col-lg-3 product_img">
+         <img [src]="item.genericDetails.imageUrl" class="img-responsive">
+         </div>
+        <div class="col-lg-3">
+          <h5 class="my-4">{{item.genericDetails.name}}</h5>
+          <p>Color: <span>{{item.color}}</span></p>
+          <p>Capacity: <span>{{item.capacity}}</span></p>
+        </div>
+        <div class="col-lg-2">
+          <h5 class="my-4">{{item.genericDetails.price}}</h5>
+        </div>
+        <div class="col-lg-2">
+          <h5 class="my-4">{{item.quantity}}</h5>
+        </div>
+        <div class="col-lg-2">
+          <h5 class="my-4">Remove</h5>
+        </div>
+        </div>
+       </div><!--EOF item list --> 
+      <div class="btn-ground">
+        <button type="button" (click)="addProductToCart(productInfoForm)" class="btn btn-primary"><span class="fa fa-shopping-cart"></span> Checkout & Proceed</button>
+        <button type="button" (click)="clearCart()" class="btn btn-primary m-l-t">Clear your cart</button>
+      </div>  
+</div> 
