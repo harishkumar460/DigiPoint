@@ -31,15 +31,28 @@ export class ProductDetailsComponent implements OnInit {
           genericDetails:this.productInfo,
           color:productInfoForm.controls.colorOptions.value,
           capacity:productInfoForm.controls.storageOptions.value,
-          quantity:productInfoForm.controls.qtyOptions.value
+          quantity:parseInt(productInfoForm.controls.qtyOptions.value)
         }
-        cartObject.items.push(product);
-        this.cartService.setCart(cartObject);
-        this.showProductInfoFormSuccess=true;
+        if(!this.checkExistingItemsInCart(cartObject,product)){
+          cartObject.items.push(product);
+          this.cartService.setCart(cartObject);
+          this.showProductInfoFormSuccess=true;
+        }
 
   	}else{
   		this.showProductInfoFormError=true;
   	}
+  }
+
+  checkExistingItemsInCart(cartObject: any,product : any){
+    var isProductExists=cartObject.items.filter(function(item){
+      if(item.color===product.color && item.capacity===product.capacity &&
+             item.genericDetails.productId===product.genericDetails.productId){
+        item.quantity+=product.quantity;
+        return true;
+      }
+    });
+     return isProductExists.length>0;
   }
 
   navigateToCart(productInfoForm : any){

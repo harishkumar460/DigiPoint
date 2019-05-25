@@ -8,7 +8,8 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item" *ngFor="let navLink of contentData.navBarOptions" [ngClass]="{'active':navLink.isActive}">
-              <a class="nav-link" [routerLink]="navLink.navUrl">{{navLink.text}}<sup *ngIf="navLink.isCart">({{itemsInCart}})</sup></a>
+              <a class="nav-link" [routerLink]="navLink.navUrl">{{navLink.text}} <span *ngIf="navLink.isCart" class="fa fa-shopping-cart"></span>
+                <sup *ngIf="navLink.isCart">({{itemsInCart}})</sup></a>
             </li>
           </ul>
         </div>

@@ -1,9 +1,10 @@
 <div class="container">
        <div class="row">
         <div class="col-lg-6">
-          <h1 class="my-4" *ngIf="cartDetails && cartDetails.items.length; else emptyCart">Itmes in your cart:</h1>
+          <h1 class="my-4" *ngIf="cartDetails && cartDetails.items.length; else emptyCart">Items in your cart:</h1>
           <ng-template #emptyCart>
           <h1 class="my-4">Your cart is empty</h1>
+          <span class="font-style fa fa-shopping-cart"></span>
         </ng-template>
          </div>
         </div>
@@ -13,22 +14,24 @@
          <img [src]="item.genericDetails.imageUrl" class="img-responsive">
          </div>
         <div class="col-lg-3">
-          <h5 class="my-4">{{item.genericDetails.name}}</h5>
+          <h5>{{item.genericDetails.name}}</h5>
+          <p><span>{{item.genericDetails.description}}</span></p>
           <p>Color: <span>{{item.color}}</span></p>
           <p>Capacity: <span>{{item.capacity}}</span></p>
         </div>
         <div class="col-lg-2">
-          <h5 class="my-4">{{item.genericDetails.price}}</h5>
+          <h5>{{item.genericDetails.price}}</h5>
         </div>
         <div class="col-lg-2">
-          <h5 class="my-4">{{item.quantity}}</h5>
+          <h5>{{item.quantity}}</h5>
         </div>
         <div class="col-lg-2">
-          <h5 class="my-4">Remove</h5>
+          <h6><span class="font-stle-xs fa fa-trash"></span></h6>
         </div>
         </div>
        </div><!--EOF item list --> 
-      <div class="btn-ground">
+      <div class="align-right btn-ground m-b-xl" *ngIf="cartDetails && cartDetails.items.length">
+        <h6 class="m-b-20">Total amount: <span>{{totalAmount}}</span></h6>
         <button type="button" (click)="addProductToCart(productInfoForm)" class="btn btn-primary"><span class="fa fa-shopping-cart"></span> Checkout & Proceed</button>
         <button type="button" (click)="clearCart()" class="btn btn-primary m-l-t">Clear your cart</button>
       </div>  
