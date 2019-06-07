@@ -5,6 +5,7 @@ import { StorageService } from '../services/storage.service';
 import { Router, ActivatedRoute} from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { SharedService } from '../services/shared.service';
+import { NgxUiLoaderService} from 'ngx-ui-loader';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -18,13 +19,16 @@ export class LandingComponent implements OnInit {
    closeResult : string;
   constructor(private router:Router, private apiService: ApiService,
             private modalService: NgbModal,private activatedRoute : ActivatedRoute,
-            private storageService: StorageService,private sharedService: SharedService) {
+            private storageService: StorageService,private sharedService: SharedService,
+             private ngxUiLoaderService: NgxUiLoaderService) {
 
              }
 
    getProductList(){
+     this.ngxUiLoaderService.start();
      this.apiService.getApi('https://shiv-app.herokuapp.com/cellphones-list').
      subscribe(response=>{
+       this.ngxUiLoaderService.stop();
       response=JSON.parse(response['_body']);
       console.log(JSON.stringify(response));
       this.productList=response['cellPhonesList']; 

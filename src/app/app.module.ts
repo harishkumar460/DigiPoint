@@ -4,6 +4,7 @@ import { NgModule }  from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule,Routes }  from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxUiLoaderModule,NgxUiLoaderConfig,POSITION,SPINNER,PB_DIRECTION} from  'ngx-ui-loader';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -26,6 +27,15 @@ const appRouteList: Routes=[
 {path:'product-details-page',component:ProductDetailsComponent}
 ];
 
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  fgsColor: 'pink',
+  fgsPosition: POSITION.centerCenter,
+  fgsSize: 40,
+  fgsType: SPINNER.rectangleBounce,
+  fbDirection: PB_DIRECTION.leftToRight, // progress bar direction
+  fbThickness: 5, // progress bar thickness
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +50,8 @@ const appRouteList: Routes=[
     FormsModule,
     HttpModule,
     NgbModule,
-    RouterModule.forRoot(appRouteList,{enableTracing:false})
+    RouterModule.forRoot(appRouteList,{enableTracing:false}),
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
   providers: [ApiService,StorageService],
   bootstrap: [AppComponent]

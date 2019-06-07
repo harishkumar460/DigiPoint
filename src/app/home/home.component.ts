@@ -3,6 +3,8 @@ import { ApiService } from '../services/api.service';
 import { StorageService } from '../services/storage.service';
 import { SharedService } from '../services/shared.service';
 import { Router, ActivatedRoute} from '@angular/router';
+import { NgxUiLoaderService} from 'ngx-ui-loader';
+
 
 @Component({
   selector: 'app-home',
@@ -14,7 +16,7 @@ export class HomeComponent implements OnInit {
   itemsInCart:Number=0;
   constructor(private router:Router, private apiService: ApiService,
             private activatedRoute : ActivatedRoute,private storageService : StorageService,
-            private sharedService : SharedService) {
+            private sharedService : SharedService, private ngxUiLoaderService: NgxUiLoaderService) {
       this.sharedService.cartCounter.asObservable().subscribe((value: any) => {
         console.log('cart item listner '+value);
         this.itemsInCart=value;
@@ -22,7 +24,7 @@ export class HomeComponent implements OnInit {
    }
 
   getContentData(){
-     if(this.storageService.getHomeContent()){
+    if(this.storageService.getHomeContent()){
        this.contentData=this.storageService.getHomeContent();
        this.navigateToLanding();
        return;
@@ -45,6 +47,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
    this.getContentData();
-  }
+ }
 
 }
