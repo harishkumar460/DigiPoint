@@ -10,6 +10,7 @@ export class CartLandingComponent implements OnInit {
   private cartDetails: any;
   public totalAmount: number=0;
   public qtyOptionsList=[1,2,3];
+  public cartItemsUpdated: boolean=false;
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
@@ -39,8 +40,12 @@ export class CartLandingComponent implements OnInit {
   }
 
   public updateCartItems(){
+    this.cartItemsUpdated=true;
     this.cartService.setCart(this.cartDetails);
     this.getTotalCartAmount();
+    setTimeout(()=>{
+      this.cartItemsUpdated=false;
+    },3000);
   }
 
 }

@@ -32,8 +32,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   fgsPosition: POSITION.centerCenter,
   fgsSize: 40,
   fgsType: SPINNER.rectangleBounce,
-  fbDirection: PB_DIRECTION.leftToRight, // progress bar direction
-  fbThickness: 5, // progress bar thickness
+  pbDirection: PB_DIRECTION.leftToRight, // progress bar direction
+  pbThickness: 5, // progress bar thickness
 };
 
 @NgModule({

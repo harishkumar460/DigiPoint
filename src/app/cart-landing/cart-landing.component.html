@@ -7,6 +7,9 @@
           <span class="font-style fa fa-shopping-cart"></span>
         </ng-template>
          </div>
+         <div class="col-lg-3">
+          <p class="successAlert cart-item-updated" *ngIf="cartItemsUpdated"><span class="fa fa-check"></span> Cart Item(s) updated </p>
+         </div>
         </div>
         <div id="item-list" *ngIf="cartDetails">
         <div class="row" *ngFor="let item of cartDetails.items; trackBy: index; let itemIndex=index">
@@ -19,10 +22,10 @@
           <p>Color: <span>{{item.color}}</span></p>
           <p>Capacity: <span>{{item.capacity}}</span></p>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-xs-2">
           <h5>{{item.genericDetails.price}}</h5>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-xs-2">
           <select class="form-control drop-down-width-xs" (change)="updateCartItems()" [(ngModel)]="item.quantity" >
               <option *ngFor="let count of qtyOptionsList"  [value]="count">{{count}}</option>
           </select>
