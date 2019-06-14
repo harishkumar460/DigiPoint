@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import { NgModule }  from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule,Routes }  from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxUiLoaderModule,NgxUiLoaderConfig,POSITION,SPINNER,PB_DIRECTION} from  'ngx-ui-loader';
@@ -48,7 +48,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     NgbModule,
     RouterModule.forRoot(appRouteList,{enableTracing:false}),
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: Http) { }
+  constructor(private httpClient: HttpClient) { }
 
   getApi(endPoint: string){
-    return this.http.get(endPoint);
+    return this.httpClient.get(endPoint);
   }
 
   postCartDetails(cartDetails){
