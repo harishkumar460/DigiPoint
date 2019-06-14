@@ -13,25 +13,25 @@
         </div>
         <div id="item-list" *ngIf="cartDetails">
         <div class="row" *ngFor="let item of cartDetails.items; trackBy: index; let itemIndex=index">
-        <div class="col-lg-3 product_img">
+        <div class="col-lg-3 col-md-3 product_img">
          <img [src]="item.genericDetails.imageUrl" class="img-responsive">
          </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-3">
           <h5>{{item.genericDetails.name}}</h5>
           <p><span>{{item.genericDetails.description}}</span></p>
           <p>Color: <span>{{item.color}}</span></p>
           <p>Capacity: <span>{{item.capacity}}</span></p>
         </div>
-        <div class="col-lg-2 col-xs-2">
+        <div class="col-lg-2 col-md-2 col-xs-2">
           <h5>{{item.genericDetails.price}}</h5>
         </div>
-        <div class="col-lg-2 col-xs-2">
+        <div class="col-lg-2 col-xs-2 col-md-2">
           <select class="form-control drop-down-width-xs" (change)="updateCartItems()" [(ngModel)]="item.quantity" >
               <option *ngFor="let count of qtyOptionsList"  [value]="count">{{count}}</option>
           </select>
-          <!-- <h5>{{item.quantity}}</h5> -->
+         
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-md-2">
           <h6 (click)="removeItem(itemIndex)"><span class="font-stle-xs fa fa-trash"></span></h6>
         </div>
         </div>

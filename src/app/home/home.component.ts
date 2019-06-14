@@ -4,8 +4,8 @@ import { StorageService } from '../services/storage.service';
 import { SharedService } from '../services/shared.service';
 import { Router, ActivatedRoute} from '@angular/router';
 import { NgxUiLoaderService} from 'ngx-ui-loader';
-import { filter} from 'rxjs/operators';
-import { of } from 'rxjs';
+import { filter,map} from 'rxjs/operators';
+import { of,from } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,8 @@ import { of } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   contentData:any;
-  itemsInCart:Number=0;
+  itemsInCart:number=0;
+  activeLink:number;
   constructor(private router:Router, private apiService: ApiService,
             private activatedRoute : ActivatedRoute,private storageService : StorageService,
             private sharedService : SharedService, private ngxUiLoaderService: NgxUiLoaderService,) {
@@ -41,18 +42,21 @@ export class HomeComponent implements OnInit {
    };
 
    navigateToLanding(){
-     of(this.contentData.navBarOptions).pipe(filter(link=> {
-       console.log('link '+link);
-       return link.isActive===true;
-     })).subscribe((navLink)=>{
-       console.log('navlink'+navLink);
-     });
-
+       this.getActiveLink(this.contentData.navBarOptions);     
        this.router.navigate(['landing'],{ relativeTo: this.activatedRoute }).then(nav=>console.log('navigation '+nav));
    }
-
+   
+   getActiveLink(navBarOptions:[]){
+    from(navBarOptions).pipe(filter((link:any,index)=> {
+      if(link.isActive){
+        this.activeLink=index;
+        return true; 
+      }})).subscribe();
+   }
    setActiveLink(linkIndex){
      this.contentData.navBarOptions[linkIndex].isActive=true;
+     this.contentData.navBarOptions[this.activeLink].isActive=false;
+     this.activeLink=linkIndex;
    }
 
    
