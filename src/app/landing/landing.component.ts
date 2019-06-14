@@ -29,8 +29,7 @@ export class LandingComponent implements OnInit {
      this.apiService.getApi('https://shiv-app.herokuapp.com/cellphones-list').
      subscribe(response=>{
        this.ngxUiLoaderService.stop();
-      response=JSON.parse(response['_body']);
-      console.log(JSON.stringify(response));
+       console.log(JSON.stringify(response));
       this.productList=response['cellPhonesList']; 
      });
    };

@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
      }
      this.apiService.getApi('https://shiv-app.herokuapp.com/home-page-content').
      subscribe(response=>{
-      response=JSON.parse(response['_body']);
       console.log(JSON.stringify(response));
       this.contentData=response; 
       this.storageService.setHomeContent(response);
