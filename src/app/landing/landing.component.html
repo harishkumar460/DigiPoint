@@ -60,5 +60,5 @@
     </div>
     <!-- /.container -->
     <ng-template #productview let-modalInstance>
-    <product-details [productInfo]="selectedProductInfo" [modal]="modalInstance"></product-details>
+    <product-details (counter)="showCounter($event)" [productInfo]="selectedProductInfo" [modal]="modalInstance"></product-details>
    </ng-template>

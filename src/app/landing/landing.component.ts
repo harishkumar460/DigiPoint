@@ -52,6 +52,9 @@ export class LandingComponent implements OnInit {
     }
   }
 
+  showCounter(val){
+    console.log('event value '+val);
+  }
 
   ngOnInit() {
   	 this.getProductList();

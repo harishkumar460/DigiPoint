@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { CartService } from '../services/cart.service';
 import { Router, ActivatedRoute} from '@angular/router';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'product-details',
   templateUrl: './product-details.component.html',
@@ -11,6 +12,7 @@ export class ProductDetailsComponent implements OnInit {
 
   @Input() productInfo;
   @Input() modal;
+  @Output() counter = new Subject<any>();
   showProductInfoFormError : boolean =false;
   showProductInfoFormSuccess : boolean =false;
   constructor(private sharedService :SharedService,private cartService :CartService,
@@ -65,6 +67,7 @@ export class ProductDetailsComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.counter.next(4);
   	console.log('product details '+JSON.stringify(this.productInfo));
   }
   
