@@ -1,0 +1,46 @@
+<div class="container float-right">
+    <h2 class="my-4">Order Payment</h2>
+    <div class="form-div">
+    <div class="shipping-address-section">
+     <h4>Shipping address</h4>
+    <p>{{shippingAddress.fullName}}</p>
+    <p>{{shippingAddress.addressLine1}}</p>
+    <p *ngIf="shippingAddress.addressLine2">{{shippingAddress.addressLine2}}</p>
+    <p>{{shippingAddress.zipCode}} , {{shippingAddress.city}}</p>
+    <p>{{shippingAddress.state}}, {{shippingAddress.country}}</p>
+    </div>	
+    <!-- <form [formGroup]="shippingForm">
+     <div class="form-group">
+		<input type="text" [placeholder]="'Full Name'"  formControlName="fullName" class="form-control" required="required">
+	 </div>
+     <div class="form-group">
+		<input type="text" [placeholder]="'Street address, PO box, Company name'"  formControlName="addressLine1" class="form-control" required="required">
+	 </div>
+	 <div class="form-group">
+	   <input type="text" class="form-control" formControlName="addressLine2" [placeholder]="'Apartment,suit,unit,building,floor,etc.'">
+	 </div>
+	 <div class="form-group">
+	 	<p class="errorAlert m-b-10" *ngIf="invalidZipCodeError">
+                            <span class="fa fa-exclamation-circle"></span>
+                            <span class="m-l-t">Please make sure to enter a valid Zip Code!</span></p>
+	     <input type="text" [placeholder]="'Zip Code'" (blur)="getCityState()" formControlName="zipCode" class="form-control" required="required">
+	 </div>
+	 <div class="form-group">
+	     <input type="text" [placeholder]="'City'" formControlName="city" class="form-control" required="required">
+	 </div>
+	 <div class="form-group">
+	     <input type="text" [placeholder]="'State'" formControlName="state" class="form-control" required="required">
+	 </div>
+	 <div class="form-group">
+	     <input type="text" [placeholder]="'Country'" formControlName="country" class="form-control" required="required">
+	 </div>
+	 <div class="row">
+        <div class="btn-ground">
+           <button type="button"   [disabled]="shippingForm.invalid || invalidZipCodeError" class="btn btn-primary" (click)="saveShippingAddress()">Continue</button>
+           <button type="button"  [routerLink]="'/home-page/cart-page'" class="btn btn-primary m-l-t">Back</button>
+        </div>
+      </div>
+	 
+    </form> -->
+    </div>
+ </div>

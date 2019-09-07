@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class StorageService {
 
  private homeContent : {};
+ private shippingAddress: {};
 
  public setHomeContent(content){
  	this.homeContent=content;
@@ -13,6 +14,13 @@ export class StorageService {
 
  public getHomeContent(){
  	return this.homeContent;
+ }
+ public setShippingAddress(address){
+ 	this.shippingAddress=address;
+ }
+
+ public getShippingAddress(){
+ 	return this.shippingAddress;
  }
 
   constructor() { }

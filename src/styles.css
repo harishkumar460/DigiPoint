@@ -60,8 +60,14 @@ color:green;
 .m-b-xl{
   margin-bottom: 80px;
 }
+.m-r-xs{
+  margin-right: 5px;
+}
 .align-right{
   text-align: right;
+}
+.float-right{
+  float: right;
 }
 .footer-style{
   position: fixed;
@@ -81,4 +87,7 @@ color:green;
   box-shadow: 0px 1px 4px 0px;
   border-radius: 2px;
   width: 200px;
+}
+.form-div{
+  max-width: 400px;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../services/cart.service';
+import { CartService } from '../../services/cart.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-cart-landing',
   templateUrl: './cart-landing.component.html',
@@ -11,7 +12,9 @@ export class CartLandingComponent implements OnInit {
   public totalAmount: number=0;
   public qtyOptionsList=[1,2,3];
   public cartItemsUpdated: boolean=false;
-  constructor(private cartService: CartService) { }
+  private closeResult: string;
+  constructor(private cartService: CartService,
+              private modalService: NgbModal) { }
 
   ngOnInit() {
   	this.cartDetails=this.cartService.getCart();
@@ -46,6 +49,23 @@ export class CartLandingComponent implements OnInit {
     setTimeout(()=>{
       this.cartItemsUpdated=false;
     },3000);
+  }
+  public open(content) {
+     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',backdrop:'static'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+   public getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
 }
