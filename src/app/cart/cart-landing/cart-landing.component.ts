@@ -51,6 +51,8 @@ export class CartLandingComponent implements OnInit {
     },3000);
   }
   public open(content) {
+     this.cartDetails.totalAmount=this.totalAmount;
+      this.cartService.setCart(this.cartDetails);
      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',backdrop:'static'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

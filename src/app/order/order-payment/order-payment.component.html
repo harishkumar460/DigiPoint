@@ -1,46 +1,62 @@
 <div class="container float-right">
     <h2 class="my-4">Order Payment</h2>
     <div class="form-div">
-    <div class="shipping-address-section">
+    <div class="shipping-address-section my-4">
      <h4>Shipping address</h4>
-    <p>{{shippingAddress.fullName}}</p>
-    <p>{{shippingAddress.addressLine1}}</p>
-    <p *ngIf="shippingAddress.addressLine2">{{shippingAddress.addressLine2}}</p>
-    <p>{{shippingAddress.zipCode}} , {{shippingAddress.city}}</p>
-    <p>{{shippingAddress.state}}, {{shippingAddress.country}}</p>
+    <div>{{shippingAddress.fullName}}</div>
+    <div>{{shippingAddress.addressLine1}}</div>
+    <div *ngIf="shippingAddress.addressLine2">{{shippingAddress.addressLine2}}</div>
+    <div>{{shippingAddress.zipCode}} , {{shippingAddress.city}}</div>
+    <div>{{shippingAddress.state}}, {{shippingAddress.country}}</div>
     </div>	
-    <!-- <form [formGroup]="shippingForm">
+    <form [formGroup]="paymentForm">
+     <h4 class="my-4">Select payment method and process the payment</h4>
+     <strong><p><span>Amount to be paid : {{payableAmount}}</span></p></strong>
      <div class="form-group">
-		<input type="text" [placeholder]="'Full Name'"  formControlName="fullName" class="form-control" required="required">
+		 <select class="form-control" formControlName="paymentMode" required="required">
+                                    <option value="cash">Cash</option>
+                                    <option value="card">Debit/Credit Card</option>
+         </select>
+     </div>
+     <div formGroupName="cashForm" *ngIf="paymentForm.value.paymentMode==='cash'">
+        <div class="form-group" >
+		 <input type="text" [placeholder]="'Amount'" formControlName="amount" class="form-control" required="required">
+        </div>
 	 </div>
-     <div class="form-group">
-		<input type="text" [placeholder]="'Street address, PO box, Company name'"  formControlName="addressLine1" class="form-control" required="required">
-	 </div>
-	 <div class="form-group">
-	   <input type="text" class="form-control" formControlName="addressLine2" [placeholder]="'Apartment,suit,unit,building,floor,etc.'">
-	 </div>
-	 <div class="form-group">
-	 	<p class="errorAlert m-b-10" *ngIf="invalidZipCodeError">
-                            <span class="fa fa-exclamation-circle"></span>
-                            <span class="m-l-t">Please make sure to enter a valid Zip Code!</span></p>
-	     <input type="text" [placeholder]="'Zip Code'" (blur)="getCityState()" formControlName="zipCode" class="form-control" required="required">
-	 </div>
-	 <div class="form-group">
-	     <input type="text" [placeholder]="'City'" formControlName="city" class="form-control" required="required">
-	 </div>
-	 <div class="form-group">
-	     <input type="text" [placeholder]="'State'" formControlName="state" class="form-control" required="required">
-	 </div>
-	 <div class="form-group">
-	     <input type="text" [placeholder]="'Country'" formControlName="country" class="form-control" required="required">
+     <div formGroupName="cardForm" *ngIf="paymentForm.value.paymentMode==='card'">
+		<div class="form-group" >
+	     <input type="text" [placeholder]="'Card holder name'" formControlName="name" class="form-control" required="required">
+	    </div>
+	    <div class="form-group">
+	     <input type="text" [placeholder]="'Card number'" formControlName="cardNumber" class="form-control" required="required">
+	    </div>
+	    <div class="form-group">
+	     <input type="text" [placeholder]="'CVV'" formControlName="cvv" class="form-control" required="required">
+	    </div>
+	    <div class="form-group">
+	     <select class="form-control" formControlName="expiryMonth" required="required">
+                                    <option value="" selected="">Month</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+         </select>
+	    </div>
+	    <div class="form-group">
+	     <select class="form-control" formControlName="expiryYear" required="required">
+                                    <option value="" selected="">Year</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+         </select>
+        </div>
 	 </div>
 	 <div class="row">
         <div class="btn-ground">
-           <button type="button"   [disabled]="shippingForm.invalid || invalidZipCodeError" class="btn btn-primary" (click)="saveShippingAddress()">Continue</button>
-           <button type="button"  [routerLink]="'/home-page/cart-page'" class="btn btn-primary m-l-t">Back</button>
+           <button type="button"   [disabled]="paymentForm.invalid" class="btn btn-primary" (click)="saveShippingAddress()">Continue</button>
+           <button type="button"  [routerLink]="'/home-page/cart-page/shipping'" class="btn btn-primary m-l-t">Back</button>
         </div>
       </div>
 	 
-    </form> -->
+    </form>
     </div>
  </div>

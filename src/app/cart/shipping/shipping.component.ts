@@ -51,7 +51,10 @@ export class ShippingComponent implements OnInit {
     this.router.navigate(['payment'],{ relativeTo: this.activatedRoute.parent}).then(nav=>console.log('navigation '+nav));
   }
   ngOnInit() {
-    
+    let shippingAddress=this.storageService.getShippingAddress();
+    if(shippingAddress){
+      this.shippingForm.setValue(shippingAddress);
+    }
   }
 
 }
