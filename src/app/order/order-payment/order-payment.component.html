@@ -13,7 +13,7 @@
      <h4 class="my-4">Select payment method and process the payment</h4>
      <strong><p><span>Amount to be paid : {{payableAmount}}</span></p></strong>
      <div class="form-group">
-		 <select class="form-control" formControlName="paymentMode" required="required">
+		 <select class="form-control" (change)="updatePaymentMode()" formControlName="paymentMode" required="required">
                                     <option value="cash">Cash</option>
                                     <option value="card">Debit/Credit Card</option>
          </select>
@@ -35,24 +35,18 @@
 	    </div>
 	    <div class="form-group">
 	     <select class="form-control" formControlName="expiryMonth" required="required">
-                                    <option value="" selected="">Month</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+            <option *ngFor="let month of monthYearConst; let i=index" [value]="i">{{month}}</option>
          </select>
 	    </div>
 	    <div class="form-group">
 	     <select class="form-control" formControlName="expiryYear" required="required">
-                                    <option value="" selected="">Year</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                <!-- <option *ngFor="let month of monthYearConst." [value]="index">{{month}}</option> -->
          </select>
         </div>
 	 </div>
-	 <div class="row">
+	 <div class="row" [ngClass]="paymentForm.value.paymentMode==='card'?'m-b-50':''">
         <div class="btn-ground">
-           <button type="button"   [disabled]="paymentForm.invalid" class="btn btn-primary" (click)="saveShippingAddress()">Continue</button>
+         <button type="button"   [disabled]="paymentForm.invalid" class="btn btn-primary" (click)="saveShippingAddress()">Continue</button>
            <button type="button"  [routerLink]="'/home-page/cart-page/shipping'" class="btn btn-primary m-l-t">Back</button>
         </div>
       </div>
