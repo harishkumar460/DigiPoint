@@ -1,11 +1,5 @@
-export class AppConstants {
-
-	constructor(){}
-
-public static MonthYearConstants={
+export const MonthYearConstants={
 	months:['Expiray Month','January','February','March','April','May','June',
 			'July','August','September','October','November','December'],
-    years: {startFrom:'2000',offset:30}
-}
-
-}
+    years: {placeHolder:'Expiray Year',startFrom:2000,offset:2030}
+};

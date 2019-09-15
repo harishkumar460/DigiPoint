@@ -35,18 +35,18 @@
 	    </div>
 	    <div class="form-group">
 	     <select class="form-control" formControlName="expiryMonth" required="required">
-            <option *ngFor="let month of monthYearConst; let i=index" [value]="i">{{month}}</option>
+            <option *ngFor="let month of monthYearConst; let i=index" [value]="i?i:null" [disabled]="!i">{{month}}</option>
          </select>
 	    </div>
 	    <div class="form-group">
 	     <select class="form-control" formControlName="expiryYear" required="required">
-                                <!-- <option *ngFor="let month of monthYearConst." [value]="index">{{month}}</option> -->
+            <option *ngFor="let year of yearsList; let i=index" [value]="i?i:null" [disabled]="!i">{{year}}</option>
          </select>
         </div>
 	 </div>
 	 <div class="row" [ngClass]="paymentForm.value.paymentMode==='card'?'m-b-50':''">
         <div class="btn-ground">
-         <button type="button"   [disabled]="paymentForm.invalid" class="btn btn-primary" (click)="saveShippingAddress()">Continue</button>
+         <button type="button"   [disabled]="paymentForm.value.paymentMode==='cash'?paymentForm.controls.cashForm.invalid:paymentForm.controls.cardForm.invalid" class="btn btn-primary" (click)="saveShippingAddress()">Continue</button>
            <button type="button"  [routerLink]="'/home-page/cart-page/shipping'" class="btn btn-primary m-l-t">Back</button>
         </div>
       </div>

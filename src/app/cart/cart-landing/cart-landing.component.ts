@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { StorageService } from '../../services/storage.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-cart-landing',
@@ -14,7 +15,8 @@ export class CartLandingComponent implements OnInit {
   public cartItemsUpdated: boolean=false;
   private closeResult: string;
   constructor(private cartService: CartService,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal,
+              private storageService: StorageService) { }
 
   ngOnInit() {
   	this.cartDetails=this.cartService.getCart();
@@ -34,6 +36,7 @@ export class CartLandingComponent implements OnInit {
   public clearCart(){
   	this.cartDetails=null;
   	this.cartService.clearCart();
+    this.storageService.setShippingAddress(null);
   }
 
   public removeItem(itemIndex: number ){
