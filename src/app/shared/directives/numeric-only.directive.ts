@@ -8,8 +8,9 @@ export class NumericOnlyDirective implements OnInit{
 
 	constructor(elem : ElementRef){
 	console.log('element '+elem);
-	 elem.nativeElement.onkeydown=(evnt)=>{
-	 	console.log('tester'+evnt);
+	 elem.nativeElement.onkeypress=(evnt)=>{
+	 	const regx = new RegExp('[^0-9]','g');
+	 	return !regx.test(evnt.key);
 	 }	
 	}
    ngOnInit(){

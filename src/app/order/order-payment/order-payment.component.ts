@@ -32,9 +32,10 @@ export class OrderPaymentComponent implements OnInit {
    public updatePaymentMode(){
 
    	if(this.paymentForm.value.paymentMode==='card'){
-      this.paymentForm.controls.cardForm['controls'].expiryMonth.setValue(null);
-      this.paymentForm.controls.cardForm['controls'].expiryYear.setValue(null);
-   	}
+      this.paymentForm.controls.cardForm.reset(); 
+   	}else{
+       this.paymentForm.controls.cashForm.reset(); 
+     }
    }
 
   ngOnInit() {
