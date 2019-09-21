@@ -1,7 +1,7 @@
 <div class="container float-right">
     <h2 class="my-4">Order Payment</h2>
     <div class="form-div">
-    <div class="shipping-address-section my-4">
+    <div  *ngIf="shippingAddress" class="shipping-address-section my-4">
      <h4>Shipping address</h4>
     <div>{{shippingAddress.fullName}}</div>
     <div>{{shippingAddress.addressLine1}}</div>

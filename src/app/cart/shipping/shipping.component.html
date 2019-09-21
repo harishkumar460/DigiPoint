@@ -3,28 +3,31 @@
     <div class="form-div">
     <form [formGroup]="shippingForm">
      <div class="form-group">
-		<input type="text" [placeholder]="'Full Name'"  formControlName="fullName" class="form-control" >
+		<input type="text" [ngClass]="shippingForm.controls.fullName.touched && shippingForm.controls.fullName.errors?'invalid-input':''" [placeholder]="'Full Name'"  maxlength="15" formControlName="fullName" class="form-control" >
 	 </div>
      <div class="form-group">
-		<input type="text" [placeholder]="'Street address, PO box, Company name'"  formControlName="addressLine1" class="form-control" >
+		<input type="text" [ngClass]="shippingForm.controls.addressLine1.touched && shippingForm.controls.addressLine1.errors?'invalid-input':''" [placeholder]="'Street address, PO box, Company name'"  formControlName="addressLine1" class="form-control" >
 	 </div>
 	 <div class="form-group">
 	   <input type="text" class="form-control" formControlName="addressLine2" [placeholder]="'Apartment,suit,unit,building,floor,etc.'">
 	 </div>
 	 <div class="form-group">
-	 	<p class="errorAlert m-b-10" *ngIf="shippingForm.controls.zipCode.touched && shippingForm.controls.zipCode.errors">
+	 	<p class="errorAlert m-b-10" *ngIf="shippingForm.controls.zipCode.touched && shippingForm.controls.zipCode.errors && shippingForm.controls.zipCode.errors.invalidZip">
                             <span class="fa fa-exclamation-circle"></span>
                             <span class="m-l-t">Please make sure to enter a valid Zip Code!</span></p>
-	     <input type="text" pattern="\d+" numeric-only maxlength="6" minlength="6" [placeholder]="'Zip Code'"  formControlName="zipCode" class="form-control" >
+	     <input type="text"  numeric-only maxlength="6" minlength="6" [placeholder]="'Zip Code'"  formControlName="zipCode" class="form-control" >
+	    <p class="m-b-10" *ngIf="shippingForm.controls.zipCode.pending">
+            <span class="m-l-t">Validating Zipcode...</span>
+        </p>
 	 </div>
 	 <div class="form-group">
-	     <input type="text" [placeholder]="'City'" formControlName="city" class="form-control" >
+	     <input type="text" [ngClass]="shippingForm.controls.city.touched && shippingForm.controls.city.errors?'invalid-input':''" [placeholder]="'City'" formControlName="city" class="form-control" >
 	 </div>
 	 <div class="form-group">
-	     <input type="text" [placeholder]="'State'" formControlName="state" class="form-control" >
+	     <input type="text" [ngClass]="shippingForm.controls.state.touched && shippingForm.controls.state.errors?'invalid-input':''" [placeholder]="'State'" formControlName="state" class="form-control" >
 	 </div>
 	 <div class="form-group">
-	     <input type="text" [placeholder]="'Country'" formControlName="country" class="form-control" >
+	     <input type="text" [ngClass]="shippingForm.controls.country.touched && shippingForm.controls.country.errors?'invalid-input':''" [placeholder]="'Country'" formControlName="country" class="form-control" >
 	 </div>
 	 <div class="row">
         <div class="btn-ground">

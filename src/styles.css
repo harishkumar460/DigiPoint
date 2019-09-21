@@ -94,3 +94,7 @@ color:green;
 .form-div{
   max-width: 400px;
 }
+.invalid-input{
+  border-color:red;
+  color:red;
+}

@@ -18,14 +18,13 @@ export class ShippingComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router) { 
    this.shippingForm= new FormGroup({
-   	    fullName: new FormControl(null,[Validators.required,Validators.minLength(5),
-                                 Validators.maxLength(15)]),
+   	    fullName: new FormControl(null,[Validators.required,Validators.minLength(3),Validators.pattern(/[a-z][^!@#$%^&*_-]$/i)]),
    	    addressLine1: new FormControl(null,Validators.required),
    	    addressLine2: new FormControl(),
-   	    city: new FormControl(null,Validators.required),
-   	    state: new FormControl(null,Validators.required),
+   	    city: new FormControl(null,[Validators.required,Validators.pattern(/[a-z][^!@#$%^&*_-]$/i)]),
+   	    state: new FormControl(null,[Validators.required,Validators.pattern(/[a-z][^!@#$%^&*_-]$/i)]),
    	    zipCode: new FormControl(null,Validators.required,[this.existingMobileNumberValidator(this)]),
-   	    country: new FormControl(null,Validators.required)             
+   	    country: new FormControl(null,[Validators.required,Validators.pattern(/[a-z][^!@#$%^&*_-]$/i)])             
    });
   }
   public existingMobileNumberValidator(componentContext ): AsyncValidatorFn {

@@ -15,6 +15,11 @@ export class DeliveryModalComponent implements OnInit {
   	this.modal.dismiss();
   	this.router.navigate(['shipping'],{ relativeTo: this.activatedRoute}).then(nav=>console.log('navigation '+nav));
   }
+
+  public navigateToPayment(){
+    this.modal.dismiss();
+    this.router.navigate(['payment'],{ relativeTo: this.activatedRoute}).then(nav=>console.log('navigation '+nav));
+  }
   
   ngOnInit() {
   }
