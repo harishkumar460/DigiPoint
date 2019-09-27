@@ -13,8 +13,9 @@ export class CartService {
     var cartObj={
       cartId:this.createCartId(),
       items:[],
-      totalAmount:'',
-      totalTax:''
+      totalAmount:0,
+      netPayAmount:0,
+      totalTax:0
       	
     }
     this.cartObject=cartObj;

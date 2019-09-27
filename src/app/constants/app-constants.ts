@@ -3,3 +3,7 @@ export const MonthYearConstants={
 			'July','August','September','October','November','December'],
     years: {placeHolder:'Expiray Year',startFrom:2000,offset:2030}
 };
+
+export const TaxRates={
+	gstRate:12
+}

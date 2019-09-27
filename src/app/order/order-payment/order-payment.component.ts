@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { CartService } from '../../services/cart.service';
-import { MonthYearConstants } from '../../constants/app-constants';
+import { MonthYearConstants, TaxRates } from '../../constants/app-constants';
 import { FormControl,FormGroup,Validators } from '@angular/forms';
 @Component({
   selector: 'app-order-payment',
@@ -12,9 +12,10 @@ export class OrderPaymentComponent implements OnInit {
 
   public shippingAddress: any;
   public paymentForm : FormGroup;
-  public payableAmount : string;
+  public currentOrder : object;
   public monthYearConst: object;
   public yearsList:any;
+  public changeDue:any;
   constructor(private storageService: StorageService,
   			  private cartService: CartService) {
   	this.paymentForm= new FormGroup({
@@ -40,7 +41,12 @@ export class OrderPaymentComponent implements OnInit {
 
   ngOnInit() {
   	this.shippingAddress = this.storageService.getShippingAddress();
-  	this.payableAmount = this.cartService.getCart().totalAmount;
+    let currentCart = this.cartService.getCart();
+    currentCart.totalTax = (parseInt(currentCart.totalAmount) * TaxRates.gstRate)/100;
+    currentCart.netPayAmount= currentCart.totalAmount+currentCart.totalTax;
+    this.currentOrder=currentCart;
+    this.cartService.setCart(currentCart);
+
   	this.monthYearConst=MonthYearConstants.months;
     this.populateYearList();
   }
@@ -50,6 +56,12 @@ export class OrderPaymentComponent implements OnInit {
     for(let i= yearConfig.startFrom; i<=yearConfig.offset;){
       this.yearsList.push(i++);
     }
+  }
+
+  public checkEnteredAmount(){
+    const enteredAmount=this.paymentForm.controls.cashForm.value.amount;
+    this.changeDue= enteredAmount >= this.currentOrder['netPayAmount']? 
+                                    (enteredAmount-this.currentOrder['netPayAmount'])+'':false; 
   }
 
 }

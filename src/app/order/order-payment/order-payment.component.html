@@ -11,7 +11,9 @@
     </div>	
     <form [formGroup]="paymentForm">
      <h4 class="my-4">Select payment method and process the payment</h4>
-     <strong><p><span>Amount to be paid : {{payableAmount}}</span></p></strong>
+     <strong><p><span>Amount to be paid : {{currentOrder.totalAmount}}</span></p></strong>
+     <strong><p><span>GST (CGST/SGST)  : {{currentOrder.totalTax}}</span></p></strong>
+     <strong><p><span>Net Amount to be paid : {{currentOrder.netPayAmount}}</span></p></strong>
      <div class="form-group">
 		 <select class="form-control" (change)="updatePaymentMode()" formControlName="paymentMode" required="required">
                                     <option value="cash">Cash</option>
@@ -20,8 +22,9 @@
      </div>
      <div formGroupName="cashForm" *ngIf="paymentForm.value.paymentMode==='cash'">
         <div class="form-group" >
-		 <input type="text" [placeholder]="'Amount'" numeric-only formControlName="amount" class="form-control" required="required">
+		 <input type="text" [placeholder]="'Amount'" (blur)="checkEnteredAmount()" minlength="2" maxlength="10" numeric-only formControlName="amount" class="form-control" required="required">
         </div>
+        <strong *ngIf="changeDue" ><p><span>Change Due : {{changeDue}}</span></p></strong>
 	 </div>
      <div formGroupName="cardForm" *ngIf="paymentForm.value.paymentMode==='card'">
 		<div class="form-group" >
