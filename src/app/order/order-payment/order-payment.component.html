@@ -15,34 +15,34 @@
      <strong><p><span>GST (CGST/SGST)  : {{currentOrder.totalTax}}</span></p></strong>
      <strong><p><span>Net Amount to be paid : {{currentOrder.netPayAmount}}</span></p></strong>
      <div class="form-group">
-		 <select class="form-control" (change)="updatePaymentMode()" formControlName="paymentMode" required="required">
+		 <select class="form-control" (change)="updatePaymentMode()" formControlName="paymentMode">
                                     <option value="cash">Cash</option>
                                     <option value="card">Debit/Credit Card</option>
          </select>
      </div>
      <div formGroupName="cashForm" *ngIf="paymentForm.value.paymentMode==='cash'">
         <div class="form-group" >
-		 <input type="text" [placeholder]="'Amount'" (blur)="checkEnteredAmount()" minlength="2" maxlength="10" numeric-only formControlName="amount" class="form-control" required="required">
+		 <input type="text" [ngClass]="paymentForm.controls.cashForm.touched && paymentForm.controls.cashForm.errors? 'invalid-input':''" [placeholder]="'Amount'" [min]="60000" (blur)="checkEnteredAmount()" minlength="2" maxlength="10" numeric-only formControlName="amount" class="form-control">
         </div>
         <strong *ngIf="changeDue" ><p><span>Change Due : {{changeDue}}</span></p></strong>
 	 </div>
      <div formGroupName="cardForm" *ngIf="paymentForm.value.paymentMode==='card'">
 		<div class="form-group" >
-	     <input type="text" [placeholder]="'Card holder name'" formControlName="name" class="form-control" required="required">
+	     <input type="text" minlength="3" maxlength="15" [placeholder]="'Card holder name'" formControlName="name" class="form-control">
 	    </div>
 	    <div class="form-group">
-	     <input type="text" [placeholder]="'Card number'" numeric-only formControlName="cardNumber" class="form-control" required="required">
+	     <input type="text" [placeholder]="'Card number'" minlength="12" maxlength="16" numeric-only formControlName="cardNumber" class="form-control">
 	    </div>
 	    <div class="form-group">
-	     <input type="text" [placeholder]="'CVV'" numeric-only formControlName="cvv" class="form-control" required="required">
+	     <input type="text" [placeholder]="'CVV'" numeric-only minlength="3" maxlength="4" formControlName="cvv" class="form-control" required="required">
 	    </div>
 	    <div class="form-group">
-	     <select class="form-control" formControlName="expiryMonth" required="required">
+	     <select class="form-control" formControlName="expiryMonth">
             <option *ngFor="let month of monthYearConst; let i=index" [value]="i?i:null" [disabled]="!i">{{month}}</option>
          </select>
 	    </div>
 	    <div class="form-group">
-	     <select class="form-control" formControlName="expiryYear" required="required">
+	     <select class="form-control" formControlName="expiryYear">
             <option *ngFor="let year of yearsList; let i=index" [value]="i?i:null" [disabled]="!i">{{year}}</option>
          </select>
         </div>

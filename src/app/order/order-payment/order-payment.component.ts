@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { CartService } from '../../services/cart.service';
 import { MonthYearConstants, TaxRates } from '../../constants/app-constants';
-import { FormControl,FormGroup,Validators } from '@angular/forms';
+import { FormControl,FormGroup,Validators,AbstractControl,ValidationErrors,ValidatorFn } from '@angular/forms';
 @Component({
   selector: 'app-order-payment',
   templateUrl: './order-payment.component.html',
@@ -29,6 +29,16 @@ export class OrderPaymentComponent implements OnInit {
   							   })
   	});
    }
+
+   /*public validateAmount(context) : ValidatorFn{
+     return (control: AbstractControl): ValidationErrors =>{
+     if(parseInt(control.value)< context.currentOrder && context.currentOrder['netPayAmount']){
+      return {validate:false};
+     }else{
+      return {validate:true};
+     }
+    }
+   }*/
 
    public updatePaymentMode(){
 
