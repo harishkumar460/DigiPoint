@@ -23,11 +23,11 @@ export class ShippingComponent implements OnInit {
    	    addressLine2: new FormControl(),
    	    city: new FormControl(null,[Validators.required,Validators.pattern(/[a-z][^!@#$%^&*_-]$/i)]),
    	    state: new FormControl(null,[Validators.required,Validators.pattern(/[a-z][^!@#$%^&*_-]$/i)]),
-   	    zipCode: new FormControl(null,Validators.required,[this.existingMobileNumberValidator(this)]),
+   	    zipCode: new FormControl(null,Validators.required,[this.existingZipCodeValidator(this)]),
    	    country: new FormControl(null,[Validators.required,Validators.pattern(/[a-z][^!@#$%^&*_-]$/i)])             
    });
   }
-  public existingMobileNumberValidator(componentContext ): AsyncValidatorFn {
+  public existingZipCodeValidator(componentContext ): AsyncValidatorFn {
   return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
     return new Promise((resolve)=> { 
       componentContext.apiService.getApi('https://api.postalpincode.in/pincode/'+control.value).subscribe(

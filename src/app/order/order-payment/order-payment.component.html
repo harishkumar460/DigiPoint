@@ -22,7 +22,8 @@
      </div>
      <div formGroupName="cashForm" *ngIf="paymentForm.value.paymentMode==='cash'">
         <div class="form-group" >
-		 <input type="text" [ngClass]="paymentForm.controls.cashForm.touched && paymentForm.controls.cashForm.errors? 'invalid-input':''" [placeholder]="'Amount'" [min]="60000" (blur)="checkEnteredAmount()" minlength="2" maxlength="10" numeric-only formControlName="amount" class="form-control">
+		 <input type="text" [ngClass]="paymentForm.controls.cashForm.touched && paymentForm.controls.cashForm.errors? 'invalid-input':''" [placeholder]="'Amount'" (blur)="checkEnteredAmount()" minlength="2" maxlength="10" numeric-only formControlName="amount" class="form-control">
+         <span class="invalid-input" *ngIf="paymentForm.controls.cashForm.errors && paymentForm.controls.cashForm.errors.lessAmount">Amount is incorrect!</span>
         </div>
         <strong *ngIf="changeDue" ><p><span>Change Due : {{changeDue}}</span></p></strong>
 	 </div>

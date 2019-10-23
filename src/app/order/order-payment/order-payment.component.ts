@@ -45,6 +45,7 @@ export class OrderPaymentComponent implements OnInit {
    	if(this.paymentForm.value.paymentMode==='card'){
       this.paymentForm.controls.cardForm.reset(); 
    	}else{
+       this.changeDue=0;
        this.paymentForm.controls.cashForm.reset(); 
      }
    }
@@ -72,6 +73,9 @@ export class OrderPaymentComponent implements OnInit {
     const enteredAmount=this.paymentForm.controls.cashForm.value.amount;
     this.changeDue= enteredAmount >= this.currentOrder['netPayAmount']? 
                                     (enteredAmount-this.currentOrder['netPayAmount'])+'':false; 
+    if(!this.changeDue && this.changeDue!==0){
+      this.paymentForm.controls.cashForm.setErrors({'lessAmount': true});
+    }
   }
 
 }
