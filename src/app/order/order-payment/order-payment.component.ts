@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { CartService } from '../../services/cart.service';
 import { MonthYearConstants, TaxRates } from '../../constants/app-constants';
+import { Router, ActivatedRoute} from '@angular/router';
 import { FormControl,FormGroup,Validators,AbstractControl,ValidationErrors,ValidatorFn } from '@angular/forms';
 @Component({
   selector: 'app-order-payment',
@@ -17,7 +18,8 @@ export class OrderPaymentComponent implements OnInit {
   public yearsList:any;
   public changeDue:any;
   constructor(private storageService: StorageService,
-  			  private cartService: CartService) {
+  			  private cartService: CartService, private router: Router,
+          private activatedRoute: ActivatedRoute) {
   	this.paymentForm= new FormGroup({
   		paymentMode: new FormControl('cash'),
   		cashForm: new FormGroup({amount: new FormControl(null,[Validators.required])}),
@@ -76,6 +78,10 @@ export class OrderPaymentComponent implements OnInit {
     if(!this.changeDue && this.changeDue!==0){
       this.paymentForm.controls.cashForm.setErrors({'lessAmount': true});
     }
+  }
+
+  public goToOrderReview(){
+   this.router.navigate(['review'], {relativeTo: this.activatedRoute}).then(nav=>console.log('nav '+nav));   
   }
 
 }

@@ -3,7 +3,7 @@
     <div class="form-div">
     <div  *ngIf="shippingAddress" class="shipping-address-section my-4">
      <h4>Shipping address</h4>
-    <div>{{shippingAddress.fullName}}</div>
+    <div>{{shippingAddress.fullName | uppercase}}</div>
     <div>{{shippingAddress.addressLine1}}</div>
     <div *ngIf="shippingAddress.addressLine2">{{shippingAddress.addressLine2}}</div>
     <div>{{shippingAddress.zipCode}} , {{shippingAddress.city}}</div>
@@ -50,7 +50,7 @@
 	 </div>
 	 <div class="row" [ngClass]="paymentForm.value.paymentMode==='card'?'m-b-50':''">
         <div class="btn-ground">
-         <button type="button"   [disabled]="paymentForm.value.paymentMode==='cash'?paymentForm.controls.cashForm.invalid:paymentForm.controls.cardForm.invalid" class="btn btn-primary" (click)="saveShippingAddress()">Continue</button>
+         <button type="button"   [disabled]="paymentForm.value.paymentMode==='cash'?paymentForm.controls.cashForm.invalid:paymentForm.controls.cardForm.invalid" class="btn btn-primary" (click)="goToOrderReview()">Continue</button>
            <button type="button"  [routerLink]="'/home-page/cart-page/shipping'" class="btn btn-primary m-l-t">Back</button>
         </div>
       </div>

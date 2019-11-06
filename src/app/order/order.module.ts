@@ -4,11 +4,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { OrderPaymentComponent } from './order-payment/order-payment.component';
+import { OrderReviewComponent } from './order-review/order-review.component';
 
 const routes: Routes = [{path:'', component: OrderPaymentComponent},
-						{path:'review', component: OrderPaymentComponent}];
+						{path:'review', component: OrderReviewComponent}];
 @NgModule({
-  declarations: [OrderPaymentComponent],
+  declarations: [OrderPaymentComponent, OrderReviewComponent],
   imports: [
     CommonModule,
     FormsModule,
