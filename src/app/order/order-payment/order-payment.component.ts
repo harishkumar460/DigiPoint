@@ -55,7 +55,8 @@ export class OrderPaymentComponent implements OnInit {
   ngOnInit() {
   	this.shippingAddress = this.storageService.getShippingAddress();
     let currentCart = this.cartService.getCart();
-    currentCart.totalTax = (parseInt(currentCart.totalAmount) * TaxRates.gstRate)/100;
+    currentCart.totalAmount = <number> currentCart.totalAmount;
+    currentCart.totalTax = ( currentCart.totalAmount * TaxRates.gstRate)/100;
     currentCart.netPayAmount= currentCart.totalAmount+currentCart.totalTax;
     this.currentOrder=currentCart;
     this.cartService.setCart(currentCart);
