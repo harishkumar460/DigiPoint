@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgModule }  from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule,Routes }  from '@angular/router';
@@ -46,12 +46,13 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     RouterModule.forRoot(appRouteList,{enableTracing:false}),
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
-  providers: [ApiService,StorageService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

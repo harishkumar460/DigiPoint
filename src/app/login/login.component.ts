@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import {FormGroup,FormControl,Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +12,23 @@ export class LoginComponent implements OnInit {
 
   showLoginForm =true;
   contentData={};
+  public loginForm: FormGroup;
+  isAuthenticationFailed: boolean= false;
+  showSpinner: boolean=false;
   constructor(private router:Router,private apiService: ApiService) {
-
+    this.loginForm=new FormGroup({
+        userName: new FormControl(null,[Validators.required]),
+        userPassword: new FormControl(null,[Validators.required])
+    });
    }
 
-  processLogin(userLoginInfo){
-   console.log('user name '+userLoginInfo.userName+' password '+userLoginInfo.userPassword);
-  this.apiService.getApi('https://shiv-app.herokuapp.com/authorized-users').
+  processLogin(){
+    this.showSpinner=true;
+   this.apiService.getApi('https://shiv-app.herokuapp.com/authorized-users').
    subscribe(response=>{
-    response=JSON.parse(response['_body']);
     console.log(JSON.stringify(response));
-     this.checkLoggedInUser(response,userLoginInfo);
+    this.showSpinner=false;
+     this.checkLoggedInUser(response,this.loginForm.value);
    });
   }
 
@@ -33,13 +40,15 @@ export class LoginComponent implements OnInit {
     console.log(matchUser);
     if(matchUser.length){
       this.router.navigate(['home-page']).then(nav=>console.log('navigation '+nav));
+     }else{
+       this.isAuthenticationFailed=true;
      }
   }
 
   getContentData(){
      this.apiService.getApi('https://shiv-app.herokuapp.com/login-page-content').
      subscribe(response=>{
-      response=JSON.parse(response['_body']);
+      //response=JSON.parse(response['_body']);
       console.log(JSON.stringify(response));
       this.contentData=response; 
      });

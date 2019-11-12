@@ -15,7 +15,7 @@ export class ProductDetailsComponent implements OnInit {
   @Output() counter = new Subject<any>();
   showProductInfoFormError : boolean =false;
   showProductInfoFormSuccess : boolean =false;
-  constructor(private sharedService :SharedService,private cartService :CartService,
+  constructor(private sharedService :SharedService, private cartService : CartService,
     private router:Router,private activatedRoute : ActivatedRoute) {
 
    }

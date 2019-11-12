@@ -11,7 +11,7 @@ export class AppComponent {
 
   }
   ngOnInit(){
-  this.router.navigate(['home-page']).then(nav=>console.log('navigation '+nav));
+  this.router.navigate(['login-page']).then(nav=>console.log('navigation '+nav));
   }
   
 }
