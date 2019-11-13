@@ -2,7 +2,7 @@
 	<div class="modal-dialog modal-login" style="margin-top:10%;">
 		<div class="modal-content">
 			<div id="login-form" *ngIf="showLoginForm; else registerForm">
-			<form [formGroup]="loginForm" >
+			<form [formGroup]="loginForm" (ngSubmit)="processLogin()">
 				<div class="modal-header">				
 					<h4 class="modal-title">{{contentData.loginTitle}}</h4>
 					
@@ -28,7 +28,7 @@
 				</div>
 				<div class="modal-footer">
 					<label class="checkbox-inline pull-left"><input type="checkbox">{{contentData.remember}}</label>
-					<input type="button" [disabled]="loginForm.invalid" (click)="processLogin()" class="btn btn-primary pull-right" [value]="contentData.login">
+					<input type="submit" [disabled]="loginForm.invalid || showSpinner" class="btn btn-primary pull-right" [value]="contentData.login?contentData.login:''">
 				</div>
 			</form>
 		</div>
