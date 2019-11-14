@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import {FormGroup,FormControl,Validators} from '@angular/forms';
-import {Subscription,Observable} from 'rxjs';
+import {Subscription,Observable,Subject,BehaviorSubject,ReplaySubject,AsyncSubject} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   isAuthenticationFailed: boolean= false;
   showSpinner: boolean=false;
   valueChangeSubscription: Subscription;
-  testObservable: Observable<any>;
+  testSubject: AsyncSubject<any>;
   constructor(private router:Router,private apiService: ApiService) {
     this.loginForm=new FormGroup({
         userName: new FormControl(null,[Validators.required]),
@@ -26,11 +26,13 @@ export class LoginComponent implements OnInit {
     this.valueChangeSubscription=this.loginForm.valueChanges.subscribe(val=>{
       this.isAuthenticationFailed=false;
     });
+    this.testSubject=new AsyncSubject();
     
    }
 
   processLogin(){
     this.showSpinner=true;
+    this.isAuthenticationFailed=false;
    this.apiService.getApi('https://shiv-app.herokuapp.com/authorized-users').
    subscribe(response=>{
     console.log(JSON.stringify(response));
@@ -64,11 +66,19 @@ export class LoginComponent implements OnInit {
 
   registerNewUser(newUserInfo){
     this.valueChangeSubscription.unsubscribe();
-    this.testObservable=new Observable(observer=>{
-      observer.next(4);
+    this.testSubject.next(4);
+    this.testSubject.next(5);
+    this.testSubject.next(6);
+    this.testSubject.subscribe(val=>{
+      console.log('first subscriber '+val);
+    },error=>{
+      console.log(error);
     });
-    this.testObservable.subscribe(val=>{
-      console.log('val '+val);
+    this.testSubject.error('error is there dude');
+    this.testSubject.subscribe(val=>{
+      console.log('second subscriber '+val);
+    },error=>{
+      console.log(error);
     });
    console.log('user name '+newUserInfo.userName+' new password '+newUserInfo.newPassword+' confirm ps '+newUserInfo.confirmPassword+' shop code '+newUserInfo.shopAuthcode);
   }
