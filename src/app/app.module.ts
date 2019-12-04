@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { NgModule }  from '@angular/core';
+import { NgModule, ApplicationRef , DoBootstrap}  from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule,Routes }  from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,13 +11,14 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { ApiService } from './services/api.service';
+import { LoginGuard } from './router-guard/login.guard';
 import { StorageService } from './services/storage.service';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { LandingComponent } from './landing/landing.component';
 
 const appRouteList: Routes=[
-{path:'login-page',component:LoginComponent},
-{path:'home-page',component:HomeComponent,
+{path:'login-page',component:LoginComponent, canActivate: [LoginGuard]},
+{path:'home-page',component:HomeComponent,canActivate: [LoginGuard],
  children: [
       { path:'landing', component:LandingComponent},
       { path:'cart-page',loadChildren: 'src/app/cart/cart.module#CartModule'}
@@ -52,7 +53,14 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     RouterModule.forRoot(appRouteList,{enableTracing:false}),
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  entryComponents:[AppComponent],
+  providers: []
 })
-export class AppModule { }
+export class AppModule implements DoBootstrap{
+
+ ngDoBootstrap(appRef: ApplicationRef){
+    const componentElement = document.createElement('app-root');
+    document.body.appendChild(componentElement);
+     appRef.bootstrap(AppComponent);
+ }
+}

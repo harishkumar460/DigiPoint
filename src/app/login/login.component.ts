@@ -1,6 +1,7 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild,ElementRef} from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { StorageService } from '../services/storage.service';
 import {FormGroup,FormControl,Validators} from '@angular/forms';
 import {Subscription,Observable,Subject,BehaviorSubject,ReplaySubject,AsyncSubject} from 'rxjs';
 
@@ -17,8 +18,11 @@ export class LoginComponent implements OnInit {
   isAuthenticationFailed: boolean= false;
   showSpinner: boolean=false;
   valueChangeSubscription: Subscription;
-  testSubject: AsyncSubject<any>;
-  constructor(private router:Router,private apiService: ApiService) {
+  testSubject: BehaviorSubject<any>;
+
+  @ViewChild('myCanvas') canvasRef : ElementRef;
+  constructor(private router:Router,private apiService: ApiService,
+              private storageService: StorageService) {
     this.loginForm=new FormGroup({
         userName: new FormControl(null,[Validators.required]),
         userPassword: new FormControl(null,[Validators.required])
@@ -26,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.valueChangeSubscription=this.loginForm.valueChanges.subscribe(val=>{
       this.isAuthenticationFailed=false;
     });
-    this.testSubject=new AsyncSubject();
+    this.testSubject = new BehaviorSubject(0);
     
    }
 
@@ -48,9 +52,11 @@ export class LoginComponent implements OnInit {
    });
     console.log(matchUser);
     if(matchUser.length){
+      this.storageService.setLoggedInStatus(true);
       this.router.navigate(['home-page']).then(nav=>console.log('navigation '+nav));
      }else{
        this.isAuthenticationFailed=true;
+       this.storageService.setLoggedInStatus(false);
      }
   }
 
@@ -69,12 +75,16 @@ export class LoginComponent implements OnInit {
     this.testSubject.next(4);
     this.testSubject.next(5);
     this.testSubject.next(6);
+    this.testSubject.next(7);
+    this.testSubject.next(8);
+    this.testSubject.next(9);
+    this.testSubject.next(10);
     this.testSubject.subscribe(val=>{
       console.log('first subscriber '+val);
     },error=>{
       console.log(error);
     });
-    this.testSubject.error('error is there dude');
+   // this.testSubject.error('error is there dude');
     this.testSubject.subscribe(val=>{
       console.log('second subscriber '+val);
     },error=>{
@@ -85,6 +95,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
    this.getContentData();
+  }
+  ngAfterViewInit(){
+    console.log('view init called');
+    let context=this.canvasRef.nativeElement.getContext('2d');
+    context.fillStyle="#FF0000";
+    context.fillRect(0,0,400,400);
   }
 
 }

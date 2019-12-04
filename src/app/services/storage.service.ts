@@ -7,6 +7,15 @@ export class StorageService {
 
  private homeContent : {};
  private shippingAddress: {};
+ private isLoggedIn: boolean = false;
+
+ public setLoggedInStatus(loggedInStatus: boolean){
+ 	this.isLoggedIn=loggedInStatus;
+ }
+
+ public getLoggedInStatus(){
+ 	return this.isLoggedIn;
+ }
 
  public setHomeContent(content){
  	this.homeContent=content;

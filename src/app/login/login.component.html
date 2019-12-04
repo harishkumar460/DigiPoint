@@ -10,7 +10,7 @@
 				<div class="modal-body">				
 					<div class="form-group">
 						<label>{{contentData.userName}}</label>
-						<input [ngClass]="loginForm.controls.userName.touched && loginForm.controls.userName.invalid?'invalid-input':''" type="text" [placeholder]="'User Name'" class="form-control" formControlName="userName">
+						<input autofocus [ngClass]="loginForm.controls.userName.touched && loginForm.controls.userName.invalid?'invalid-input':''" type="text" [placeholder]="'User Name'" class="form-control" formControlName="userName">
 					</div>
 					<div class="form-group">
 						<div class="clearfix">
@@ -29,6 +29,7 @@
 				<div class="modal-footer">
 					<label class="checkbox-inline pull-left"><input type="checkbox">{{contentData.remember}}</label>
 					<input type="submit" [disabled]="loginForm.invalid || showSpinner" class="btn btn-primary pull-right" [value]="contentData.login?contentData.login:''">
+					<canvas #myCanvas style="border:solid 1px red;" height="200" width="200"></canvas>
 				</div>
 			</form>
 		</div>

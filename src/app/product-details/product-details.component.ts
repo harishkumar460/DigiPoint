@@ -67,8 +67,31 @@ export class ProductDetailsComponent implements OnInit {
    }
 
   ngOnInit() {
+    console.log('on init called');
     this.counter.next(4);
   	console.log('product details '+JSON.stringify(this.productInfo));
+  }
+
+  ngOnChanges(){
+    console.log('on changes event called');
+  }
+  ngDoCheck(){
+    console.log('do check called');
+  }
+  ngAfterViewInit(){
+    console.log('ngAfterViewInit called');
+  }
+  ngAfterViewChecked(){
+    console.log('ngAfterViewChecked called');
+  }
+  ngAfterContentInit(){
+    console.log('ngAfterContentInit called');
+  }
+  ngAfterContentChecked(){
+    console.log('ngAfterContentChecked called');
+  }
+  ngOnDestroy(){
+    console.log('ngDestroy called');
   }
   
 
