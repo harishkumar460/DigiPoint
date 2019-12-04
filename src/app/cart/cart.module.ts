@@ -8,7 +8,7 @@ import { DeliveryModalComponent } from './delivery-modal/delivery-modal.componen
 import { ShippingComponent } from './shipping/shipping.component';
 const routes: Routes = [{path:'', component: CartLandingComponent},
 						{path:'shipping', component: ShippingComponent},
-						{ path:'payment',loadChildren: 'src/app/order/order.module#OrderModule'}
+						{ path:'payment',loadChildren: () => import('src/app/order/order.module').then(m => m.OrderModule)}
 						];
 
 @NgModule({

@@ -17,11 +17,11 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { LandingComponent } from './landing/landing.component';
 
 const appRouteList: Routes=[
-{path:'login-page',component:LoginComponent, canActivate: [LoginGuard]},
-{path:'home-page',component:HomeComponent,canActivate: [LoginGuard],
+{path:'login-page',component:LoginComponent},
+{path:'home-page',component:HomeComponent,
  children: [
       { path:'landing', component:LandingComponent},
-      { path:'cart-page',loadChildren: 'src/app/cart/cart.module#CartModule'}
+      { path:'cart-page',loadChildren: () => import('src/app/cart/cart.module').then(m => m.CartModule)}
     ] 
 },
 {path:'product-details-page',component:ProductDetailsComponent}
@@ -50,7 +50,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    RouterModule.forRoot(appRouteList,{enableTracing:false}),
+    RouterModule.forRoot(appRouteList,{onSameUrlNavigation:'reload', enableTracing:false}),
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
   entryComponents:[AppComponent],

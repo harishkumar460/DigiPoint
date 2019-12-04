@@ -1,0 +1,3 @@
+[1118/154914.852:ERROR:exception_handler_server.cc(527)] ConnectNamedPipe: The pipe is being closed. (0xE8)
+[1126/145400.286:ERROR:exception_handler_server.cc(527)] ConnectNamedPipe: The pipe is being closed. (0xE8)
+[1127/115657.035:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports

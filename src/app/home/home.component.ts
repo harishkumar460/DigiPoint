@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   getContentData(){
     if(this.storageService.getHomeContent()){
        this.contentData=this.storageService.getHomeContent();
-       this.navigateToLanding();
+       //this.navigateToLanding();
        return;
      }
      this.apiService.getApi('https://shiv-app.herokuapp.com/home-page-content').
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
       console.log(JSON.stringify(response));
       this.contentData=response; 
       this.storageService.setHomeContent(response);
-      this.navigateToLanding();
+     // this.navigateToLanding();
      });
    };
 

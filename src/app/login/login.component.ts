@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   valueChangeSubscription: Subscription;
   testSubject: BehaviorSubject<any>;
 
-  @ViewChild('myCanvas') canvasRef : ElementRef;
+  @ViewChild('myCanvas', { static: false }) canvasRef : ElementRef;
   constructor(private router:Router,private apiService: ApiService,
               private storageService: StorageService) {
     this.loginForm=new FormGroup({
