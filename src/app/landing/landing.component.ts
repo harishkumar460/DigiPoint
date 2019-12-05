@@ -14,7 +14,7 @@ import { NgxUiLoaderService} from 'ngx-ui-loader';
 export class LandingComponent implements OnInit {
 
    productList :[];
-   contentData:{};
+   contentData:any;
    selectedProductInfo:{id:'test',name:'tester'};
    closeResult : string;
   constructor(private router:Router, private apiService: ApiService,

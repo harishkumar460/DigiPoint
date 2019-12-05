@@ -9,7 +9,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class CartLandingComponent implements OnInit {
 
-  private cartDetails: any;
+  public cartDetails: any;
   public totalAmount: number=0;
   public qtyOptionsList=[1,2,3];
   public cartItemsUpdated: boolean=false;

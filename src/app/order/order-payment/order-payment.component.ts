@@ -13,7 +13,7 @@ export class OrderPaymentComponent implements OnInit {
 
   public shippingAddress: any;
   public paymentForm : FormGroup;
-  public currentOrder : object;
+  public currentOrder : any;
   public monthYearConst: object;
   public yearsList:any;
   public changeDue:any;

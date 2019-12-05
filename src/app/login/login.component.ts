@@ -13,7 +13,7 @@ import {Subscription,Observable,Subject,BehaviorSubject,ReplaySubject,AsyncSubje
 export class LoginComponent implements OnInit {
 
   showLoginForm =true;
-  contentData={};
+  contentData :any;
   public loginForm: FormGroup;
   isAuthenticationFailed: boolean= false;
   showSpinner: boolean=false;
