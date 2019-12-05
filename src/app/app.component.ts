@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from './services/storage.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,11 +8,12 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'myDemoApp';
-  constructor(private router:Router){
+  constructor(private router:Router, private storageService: StorageService){
 
   }
   ngOnInit(){
-  this.router.navigate(['login-page']).then(nav=>console.log('navigation '+nav));
+  let targetRout= this.storageService.getLoggedInStatus()? 'home-page' :'login-page';
+  this.router.navigate([targetRout]).then(nav=>console.log('navigation '+nav));
   }
   
 }

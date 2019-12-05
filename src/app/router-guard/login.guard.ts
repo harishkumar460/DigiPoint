@@ -14,10 +14,9 @@ export class LoginGuard implements CanActivate {
 	}
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot):  Observable<boolean | UrlTree> | 
   Promise<boolean | UrlTree> | boolean | UrlTree  {
-    if (this.storageService.getLoggedInStatus()){
-      return true;
-    } else {
-      this.router.navigate['login-page'];
-    }
+    this.storageService.clearSession();
+    let url=this.router.parseUrl('home-page/landing');
+    console.log('url is '+url);
+    return true;
   }
 }

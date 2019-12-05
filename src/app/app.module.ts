@@ -17,7 +17,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { LandingComponent } from './landing/landing.component';
 
 const appRouteList: Routes=[
-{path:'login-page',component:LoginComponent},
+{path:'login-page',component:LoginComponent,canActivate:[LoginGuard]},
 {path:'home-page',component:HomeComponent,
  children: [
       { path:'landing', component:LandingComponent},

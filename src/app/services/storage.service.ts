@@ -7,14 +7,19 @@ export class StorageService {
 
  private homeContent : {};
  private shippingAddress: {};
- private isLoggedIn: boolean = false;
+ private isLoggedIn: any = null;
 
- public setLoggedInStatus(loggedInStatus: boolean){
- 	this.isLoggedIn=loggedInStatus;
+ constructor() { }
+
+ public setLoggedInStatus(loggedInStatus: any){
+ 	sessionStorage.setItem('isLoggedIn',loggedInStatus);
  }
 
  public getLoggedInStatus(){
- 	return this.isLoggedIn;
+ 	return sessionStorage.getItem('isLoggedIn');
+ }
+ public clearSession(){
+ 	sessionStorage.removeItem('isLoggedIn');
  }
 
  public setHomeContent(content){
@@ -32,5 +37,4 @@ export class StorageService {
  	return this.shippingAddress;
  }
 
-  constructor() { }
 }

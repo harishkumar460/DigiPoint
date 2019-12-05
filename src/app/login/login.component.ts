@@ -98,9 +98,9 @@ export class LoginComponent implements OnInit {
   }
   ngAfterViewInit(){
     console.log('view init called');
-    let context=this.canvasRef.nativeElement.getContext('2d');
-    context.fillStyle="#FF0000";
-    context.fillRect(0,0,400,400);
+    //let context=this.canvasRef.nativeElement.getContext('2d');
+    //context.fillStyle="#FF0000";
+    //context.fillRect(0,0,400,400);
   }
 
 }
