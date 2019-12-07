@@ -6,10 +6,6 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/dist'));
 // Start the app by listening on the default
 // Heroku port
-//app.listen(process.env.PORT || 8080);
-/*app.get('/', function(request, response) {
-  response.render('/index.html');
-});*/
 const app_folder = 'dist/myDemoApp';
 
 // ---- SERVE STATIC FILES ---- //

@@ -35,28 +35,29 @@
 		</div>
 		<ng-template #registerForm>
 		<div class="register-form">
-			<form #userRegisteration="ngForm" (ngSubmit)="registerNewUser(userRegisteration.value)" method="post">
+			<form [formGroup]="userRegisterationForm" (ngSubmit)="registerNewUser()" method="post">
 				<div class="modal-header">				
 					<h4 class="modal-title">{{contentData.registerTitle}}</h4>
 					
 				</div>
 				<div class="modal-body">				
 					<div class="form-group">
-						<input type="text" [placeholder]="contentData.userNamePlaceholder" ngModel name="userName" class="form-control" required="required">
+						<input type="text" [placeholder]="contentData.userNamePlaceholder"  formControlName="userName" class="form-control" >
 					</div>
 					<div class="form-group">
-					    <input type="password" class="form-control" ngModel name="newPassword" [placeholder]="contentData.newPasswordPlaceholder" required="required">
+					    <input type="password" class="form-control" formControlName="newPassword" [placeholder]="contentData.newPasswordPlaceholder">
 					</div>
 					<div class="form-group">
-					    <input type="password" [placeholder]="contentData.confirmPasswordPlaceholder" ngModel name="confirmPassword" class="form-control" required="required">
+					    <input type="password" [placeholder]="contentData.confirmPasswordPlaceholder" formControlName="confirmPassword" class="form-control">
 					</div>
 					<div class="form-group">
-					    <input type="password" [placeholder]="contentData.shopAuthcodePlaceholder" ngModel name="shopAuthcode" class="form-control" required="required">
+					    <input type="password" [placeholder]="contentData.shopAuthcodePlaceholder" formControlName="shopAuthcode" class="form-control">
 					</div>
 				</div>
 				<div class="modal-footer">
 					<input (click)="showLoginForm=true;" type="button" class="btn btn-primary pull-right" [value]="contentData.backLogin">
-					<input type="submit" class="btn btn-primary pull-right" [value]="contentData.register">
+					<input (click)="userRegisterationForm.reset();" type="button" class="btn btn-primary pull-right" [value]="contentData.reset">
+					<input type="submit" [disabled]="userRegisterationForm.invalid" class="btn btn-primary pull-right" [value]="contentData.register">
 				</div>
 			</form>
 		</div>

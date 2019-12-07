@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   showLoginForm =true;
   contentData :any;
   public loginForm: FormGroup;
+  public userRegisterationForm : FormGroup;
   isAuthenticationFailed: boolean= false;
   showSpinner: boolean=false;
   valueChangeSubscription: Subscription;
@@ -26,6 +27,12 @@ export class LoginComponent implements OnInit {
     this.loginForm=new FormGroup({
         userName: new FormControl(null,[Validators.required]),
         userPassword: new FormControl(null,[Validators.required])
+    });
+    this.userRegisterationForm= new FormGroup({
+      userName: new FormControl(null,[Validators.required]),
+      newPassword: new FormControl(null,[Validators.required]),
+      confirmPassword: new FormControl(null,[Validators.required]),
+      shopAuthcode: new FormControl(null,[Validators.required])
     });
     this.valueChangeSubscription=this.loginForm.valueChanges.subscribe(val=>{
       this.isAuthenticationFailed=false;
@@ -72,25 +79,7 @@ export class LoginComponent implements OnInit {
 
   registerNewUser(newUserInfo){
     this.valueChangeSubscription.unsubscribe();
-    this.testSubject.next(4);
-    this.testSubject.next(5);
-    this.testSubject.next(6);
-    this.testSubject.next(7);
-    this.testSubject.next(8);
-    this.testSubject.next(9);
-    this.testSubject.next(10);
-    this.testSubject.subscribe(val=>{
-      console.log('first subscriber '+val);
-    },error=>{
-      console.log(error);
-    });
-   // this.testSubject.error('error is there dude');
-    this.testSubject.subscribe(val=>{
-      console.log('second subscriber '+val);
-    },error=>{
-      console.log(error);
-    });
-   console.log('user name '+newUserInfo.userName+' new password '+newUserInfo.newPassword+' confirm ps '+newUserInfo.confirmPassword+' shop code '+newUserInfo.shopAuthcode);
+    console.log(this.userRegisterationForm);
   }
 
   ngOnInit() {
