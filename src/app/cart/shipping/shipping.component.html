@@ -31,7 +31,7 @@
 	 </div>
 	 <div class="row">
         <div class="btn-ground">
-           <button type="button"   [disabled]="shippingForm.invalid" class="btn btn-primary" (click)="saveShippingAddress()">Continue</button>
+           <button type="button"   [disabled]="shippingForm.invalid || shippingForm.controls.zipCode.pending" class="btn btn-primary" (click)="saveShippingAddress()">Continue</button>
            <button type="button"  [routerLink]="'/home-page/cart-page'" class="btn btn-primary m-l-t">Back</button>
         </div>
       </div>

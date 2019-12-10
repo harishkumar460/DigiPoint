@@ -1,3 +1,35 @@
-<p>
-  order-review works!
-</p>
+<div class="container">
+       <div class="row">
+        <div class="col-lg-6">
+          <h1 class="my-4" >Review your order please:</h1>
+         </div>
+        </div>
+        <div id="item-list" *ngIf="orderDetails">
+        <div class="row" *ngFor="let item of orderDetails.items; trackBy: index; let itemIndex=index">
+        <div class="col-lg-3 col-md-3 product_img">
+         <img [src]="item.genericDetails.imageUrl" class="img-responsive">
+         </div>
+        <div class="col-lg-3 col-md-3">
+          <h5>{{item.genericDetails.name}}</h5>
+          <p><span>{{item.genericDetails.description}}</span></p>
+          <p>Color: <span>{{item.color}}</span></p>
+          <p>Capacity: <span>{{item.capacity}}</span></p>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-2">
+          <h5>{{item.genericDetails.price}}</h5>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-2">
+          <h5>{{item.quantity}}</h5>
+        </div>
+        
+        </div>
+       </div><!--EOF item list --> 
+      <div class="align-right btn-ground m-b-xl" *ngIf="orderDetails && orderDetails.items.length">
+        <!-- <h6 class="m-b-20">Total amount: <span>{{orderDetails.totalAmount}}</span></h6> -->
+        <strong><p><span>Amount to be paid : {{orderDetails.totalAmount}}</span></p></strong>
+        <strong><p><span>GST (CGST/SGST)  : {{orderDetails.totalTax}}</span></p></strong>
+        <strong><p><span>Net Amount to be paid : {{orderDetails.netPayAmount}}</span></p></strong>
+        <button type="button" (click)="open(deliveryoptions)" class="btn btn-primary"><span class="fa fa-shopping-cart"></span> Confirm order</button>
+        <button type="button" [routerLink]="'/home-page/cart-page'" class="btn btn-primary m-l-t">update your cart</button>
+      </div>  
+</div> 

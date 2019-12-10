@@ -23,7 +23,7 @@
     <!-- Footer -->
     <footer class="bg-dark footer-style">
       <div class="container">
-        <p class="m-0 text-center text-white">{{contentData.footerText}}</p>
+        <p [innerHTML]="contentData.footerText" class="m-0 text-center text-white"></p>
       </div>
       <!-- /.container -->
     </footer>
