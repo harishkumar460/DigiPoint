@@ -48,7 +48,7 @@
          </select>
         </div>
 	 </div>
-	 <div class="row" [ngClass]="paymentForm.value.paymentMode==='card'?'m-b-50':''">
+	 <div class="row" class="m-b-50">
         <div class="btn-ground">
          <button type="button"   [disabled]="paymentForm.value.paymentMode==='cash'?paymentForm.controls.cashForm.invalid:paymentForm.controls.cardForm.invalid" class="btn btn-primary" (click)="goToOrderReview()">Continue</button>
            <button type="button"  [routerLink]="'/home-page/cart-page/shipping'" class="btn btn-primary m-l-t">Back</button>
