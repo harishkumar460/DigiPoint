@@ -3,6 +3,7 @@ import { SharedService } from '../services/shared.service';
 import { CartService } from '../services/cart.service';
 import { Router, ActivatedRoute} from '@angular/router';
 import { Subject } from 'rxjs';
+import {FormGroup,FormControl,Validators} from '@angular/forms';
 @Component({
   selector: 'product-details',
   templateUrl: './product-details.component.html',
@@ -13,17 +14,20 @@ export class ProductDetailsComponent implements OnInit {
   @Input() productInfo;
   @Input() modal;
   @Output() counter = new Subject<any>();
-  showProductInfoFormError : boolean =false;
   showProductInfoFormSuccess : boolean =false;
+  public productInfoForm : FormGroup;
   constructor(private sharedService :SharedService, private cartService : CartService,
     private router:Router,private activatedRoute : ActivatedRoute) {
-
+     this.productInfoForm= new FormGroup({
+      colorOptions: new FormControl(null,[Validators.required]),
+      storageOptions: new FormControl(null,[Validators.required]),
+      qtyOptions: new FormControl(null,[Validators.required]),
+     });
    }
 
   
 
   public addProductToCart(productInfoForm : any){
-    this.showProductInfoFormError=false;
     this.showProductInfoFormSuccess=false;
   	console.log('productInfo '+this.productInfo+' productDetails '+productInfoForm);
   	if(productInfoForm.controls.colorOptions.value && productInfoForm.controls.storageOptions.value &&
@@ -41,8 +45,6 @@ export class ProductDetailsComponent implements OnInit {
           this.showProductInfoFormSuccess=true;
         }
 
-  	}else{
-  		this.showProductInfoFormError=true;
   	}
   }
 
@@ -59,11 +61,8 @@ export class ProductDetailsComponent implements OnInit {
 
   navigateToCart(productInfoForm : any){
     this.addProductToCart(productInfoForm);
-    if(!this.showProductInfoFormError){
-      this.modal.dismiss();
-      this.router.navigate(['cart-page'],{ relativeTo: this.activatedRoute.parent }).then(nav=>console.log('navigation '+nav));
-    }
-     
+    this.modal.dismiss();
+    this.router.navigate(['cart-page'],{ relativeTo: this.activatedRoute.parent }).then(nav=>console.log('navigation '+nav));  
    }
 
   ngOnInit() {
