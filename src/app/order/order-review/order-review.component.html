@@ -29,7 +29,7 @@
         <strong><p><span>Amount to be paid : {{orderDetails.totalAmount}}</span></p></strong>
         <strong><p><span>GST (CGST/SGST)  : {{orderDetails.totalTax}}</span></p></strong>
         <strong><p><span>Net Amount to be paid : {{orderDetails.netPayAmount}}</span></p></strong>
-        <button type="button" (click)="open(deliveryoptions)" class="btn btn-primary"><span class="fa fa-shopping-cart"></span> Confirm order</button>
+        <button type="button" [routerLink]="'/home-page/cart-page/payment/confirmation'" class="btn btn-primary"><span class="fa fa-shopping-cart"></span> Confirm order</button>
         <button type="button" [routerLink]="'/home-page/cart-page'" class="btn btn-primary m-l-t">update your cart</button>
       </div>  
 </div> 

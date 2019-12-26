@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                <h3 class="modal-title">{{productInfo.name}}</h3>
-               <a  href="javascript:void()" (click)="showProductInfoFormError=false;modal.dismiss();" class="class pull-right"><span class="fa fa-close"></span></a>
+               <a  href="javascript:void()" (click)="modal.dismiss();" class="class pull-right"><span class="fa fa-close"></span></a>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -21,25 +21,25 @@
                          <li *ngFor="let description of productInfo.detailedDescription">{{description}}</li>   
                         </ul>
                         <h3 class="cost">{{productInfo.price}}<small *ngIf="productInfo.preCost" class="pre-cost m-l-t">{{productInfo.preCost}}</small></h3>
-                        <form #productInfoForm = "ngForm">
+                        <form [formGroup]="productInfoForm">
                         <div class="row">
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <select class="form-control" name="colorOptions" ngModel>
-                                    <option value="" selected="">Color</option>
-                                    <option *ngFor="let color of productInfo.colors" [value]="color">{{color}}</option>
+                            <div class="col-md-4 col-sm-6 col-xs-12 form-group">
+                                <select class="form-control" formControlName="colorOptions" ngModel>
+                                <option value="" selected="">Color</option>
+                                <option *ngFor="let color of productInfo.colors" [value]="color">{{color}}</option>
                                     
                                 </select>
                             </div>
                             <!-- end col -->
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <select class="form-control" name="storageOptions" ngModel>
+                            <div class="col-md-4 col-sm-6 col-xs-12 form-group">
+                                <select class="form-control" formControlName="storageOptions" ngModel>
                                     <option value="" selected="">Capacity</option>
                                     <option *ngFor="let storage of productInfo.capacity" [value]="storage">{{storage}}</option>
                                 </select>
                             </div>
                             <!-- end col -->
-                            <div class="col-md-4 col-sm-12">
-                                <select class="form-control" name="qtyOptions" ngModel>
+                            <div class="col-md-4 col-sm-12 form-group">
+                                <select class="form-control" formControlName="qtyOptions" ngModel>
                                     <option value="" selected="">Qty</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -50,13 +50,10 @@
                         </div>
                         
                         <div class="space-ten"></div>
-                        <p class="errorAlert m-b-10" *ngIf="showProductInfoFormError">
-                            <span class="fa fa-exclamation-circle"></span>
-                            <span class="m-l-t">Please select all specifications !</span></p>
                         <p class="successAlert m-b-10" *ngIf="showProductInfoFormSuccess"><span class="fa fa-check"></span><span class="m-l-t">Item added to Cart</span></p>
                         <div class="btn-ground">
-                            <button type="button" [disabled]="!productInfoForm.dirty && productInfoForm.valid" (click)="addProductToCart(productInfoForm)" class="btn btn-primary"><span class="fa fa-shopping-cart"></span> Add To Cart</button>
-                            <button type="button" [disabled]="!productInfoForm.dirty && productInfoForm.valid" (click)="navigateToCart(productInfoForm)" class="btn btn-primary m-l-t"> Add & Proceed</button>
+                            <button type="button" [disabled]="productInfoForm.invalid" (click)="addProductToCart(productInfoForm)" class="btn btn-primary"><span class="fa fa-shopping-cart"></span> Add To Cart</button>
+                            <button type="button" [disabled]="productInfoForm.invalid" (click)="navigateToCart(productInfoForm)" class="btn btn-primary m-l-t"> Add & Proceed</button>
                         </div>
                         </form>
                     </div>
