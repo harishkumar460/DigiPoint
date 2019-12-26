@@ -80,6 +80,11 @@ export class LoginComponent implements OnInit {
   registerNewUser(newUserInfo){
     this.valueChangeSubscription.unsubscribe();
     console.log(this.userRegisterationForm);
+    this.apiService.postApi('http://localhost:3000/db/saveuser',this.userRegisterationForm.value).
+     subscribe(response=>{
+      console.log(JSON.stringify(response));
+     });
+
   }
 
   ngOnInit() {

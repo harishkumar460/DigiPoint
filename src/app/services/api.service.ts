@@ -11,6 +11,10 @@ export class ApiService {
     return this.httpClient.get(endPoint);
   }
 
+  postApi(endPoint: string, payload: any){
+    return this.httpClient.post(endPoint,payload);
+  }
+
   postCartDetails(cartDetails){
    
   }
